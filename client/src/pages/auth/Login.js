@@ -21,18 +21,18 @@ const Login = () => {
         email,
         password,
       });
-      // console.log(res);
+      console.log(res);
       if (res && res.data.success) {
         setAuth({
           ...auth,
-          user: res.data.user,
-          // token: res.data.token,
+          user: res?.data?.user,
+          token: res.data.token,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
         navigate(location.state || "/");
         toast.success(res.data.message);
       } else {
-        toast.error(res.data.message);
+        toast.error("something is wrong");
       }
     } catch (e) {
       console.log(e);

@@ -34,7 +34,7 @@ const Register = () => {
           user: res.data.user,
           token: res.token,
         });
-        console.log(auth);
+        // console.log(auth);
         localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/");
         await toast.success(res.data.message);

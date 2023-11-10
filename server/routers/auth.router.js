@@ -15,12 +15,13 @@ router.post("/login", login);
 router.post("/forgot-password", forgotPasswordController);
 
 router.get("/test", userVerify, isAdmin, test);
+
 // protected user route auth
-router.get("/user-auth", userVerify, (req, res) => {
+router.get("/userauth", userVerify, (req, res) => {
   res.status(200).send({ ok: true });
 });
 // protected admin route auth
-router.get("/admin-auth", userVerify, isAdmin, (req, res) => {
+router.get("/adminauth", userVerify, isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });
 

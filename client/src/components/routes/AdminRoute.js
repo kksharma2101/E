@@ -10,7 +10,7 @@ export default function AdminRoute() {
 
   useEffect(() => {
     const authCheck = async () => {
-      const res = await axios.get("/api/user-auth");
+      const res = await axios.get("/api/adminauth");
       if (res.data.ok) {
         setOk(true);
       } else {
@@ -20,7 +20,7 @@ export default function AdminRoute() {
     if (auth?.token) authCheck();
   }, [auth?.token]);
 
-  return ok ? <Outlet /> : <Spinner />;
+  return ok ? <Outlet /> : <Spinner path="/" />;
 }
 // Outlet use for nested routhing
 // export default PrivateRoutes;

@@ -111,7 +111,7 @@ const login = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "User logged successfully",
-      user,
+      role: user.role,
     });
   } catch (e) {
     return next(new AppError(e.message, 404));
