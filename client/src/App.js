@@ -6,11 +6,11 @@ import Policy from "./pages/Policy";
 import Pagenotfound from "./pages/Pagenotfound";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
-// import Dashboard from "./pages/user/Dashboard";
-// import PrivateRoutes from "./components/routes/PrivateRoute";
+import PrivateRoutes from "./components/routes/PrivateRoute";
 import ForgotPassword from "./pages/auth/ForgotPassword";
-// import AdminRoute from "./components/routes/AdminRoute";
-// import AdminDashboard from "./pages/admin/AdminDashboard";
+import Dashboard from "./pages/user/Dashboard";
+import AdminRoute from "./components/routes/AdminRoute";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 function App() {
   return (
@@ -18,13 +18,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
 
-        {/* <Route path="/dashboard" element={<PrivateRoutes />}>
+        <Route path="/dashboard" element={<PrivateRoutes />}>
           <Route path="user" element={<Dashboard />} />
-        </Route> */}
+        </Route>
 
-        {/* <Route path="/dashboard" element={<AdminRoute />}>
+        <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
-        </Route> */}
+        </Route>
 
         <Route path="/register" element={<Register />} />
 
