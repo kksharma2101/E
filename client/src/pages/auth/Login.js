@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Layout from "../../components/layout/Layout";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import toast from "react-hot-toast";
 import "./authStyle.css";
 import { useAuth } from "../../context/Auth";
 
@@ -21,16 +21,16 @@ const Login = () => {
         email,
         password,
       });
-      console.log(res);
+      // console.log(res.data.user.name);
       if (res && res.data.success) {
         setAuth({
           ...auth,
-          user: res?.data?.user,
+          user: res.data.user,
           token: res.data.token,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
         navigate(location.state || "/");
-        toast.success(res.data.message);
+        toast.success(res.data && res.data.message);
       } else {
         toast.error("something is wrong");
       }

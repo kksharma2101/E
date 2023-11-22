@@ -98,7 +98,7 @@ const login = async (req, res, next) => {
     // generate jwt token
     const token = await JWT.sign(
       {
-        id: user._id,
+        _id: user._id,
       },
       process.env.JWT_SECRET,
       {
@@ -111,7 +111,15 @@ const login = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "User logged successfully",
-      role: user.role,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+        role: user.role,
+      },
+      token,
     });
   } catch (e) {
     return next(new AppError(e.message, 404));
