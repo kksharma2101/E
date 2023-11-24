@@ -3,6 +3,7 @@ import { useAuth } from "../../context/Auth";
 import { Outlet } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../Spinner";
+import AdminDashboard from "../../pages/admin/AdminDashboard";
 
 export default function AdminRoute() {
   const [ok, setOk] = useState(false);
@@ -20,7 +21,7 @@ export default function AdminRoute() {
     if (auth?.token) authCheck();
   }, [auth?.token]);
 
-  return ok ? <Outlet /> : <Spinner path="/" />;
+  return ok ? <Outlet /> : <Spinner path={`/${(<AdminDashboard />)}`} />;
 }
 // Outlet use for nested routhing
 // export default PrivateRoutes;
