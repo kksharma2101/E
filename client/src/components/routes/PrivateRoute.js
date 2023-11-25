@@ -20,7 +20,7 @@ export default function PrivateRoutes() {
     if (auth?.token) authCheck();
   }, [auth?.token]);
 
-  return ok ? <Outlet /> : <Spinner />;
+  return ok ? <Spinner /> : <Outlet />;
 }
 // Outlet use for nested routhing
 // export default PrivateRoutes;
