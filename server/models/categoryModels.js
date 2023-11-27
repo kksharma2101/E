@@ -6,4 +6,12 @@ const categorySchema = new Schema({
     required: true,
     unique: true,
   },
+  slug: {
+    type: String,
+    lowercase: true,
+  },
 });
+
+const category = model("Category", categorySchema);
+
+export default category;

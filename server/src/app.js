@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cors from "cors";
 import connectDb from "../config/db.config.js";
 import router from "../routers/auth.router.js";
+import categoryRoutes from "../routers/categoryRoutes.js";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors({ origin: "http://localhost:3000" }));
 
 // router call
 app.use("/api", router);
+app.use("/api", categoryRoutes);
 
 // call database
 connectDb();
