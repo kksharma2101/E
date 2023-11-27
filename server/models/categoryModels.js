@@ -1,10 +1,10 @@
-import { Schema, model } from "mongoose";
+import { model, Schema } from "mongoose";
 
 const categorySchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
   },
   slug: {
     type: String,
@@ -12,6 +12,6 @@ const categorySchema = new Schema({
   },
 });
 
-const category = model("Category", categorySchema);
+const categoryModel = model("Category", categorySchema);
 
-export default category;
+export default categoryModel;
