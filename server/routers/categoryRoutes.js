@@ -1,15 +1,28 @@
 import express from "express";
+import {
+  createCategoryController,
+  deleteCategory,
+  getAllCategory,
+  getSingleCategory,
+  updateCategory,
+} from "../controllers/categoryController.js";
 import { isAdmin, userVerify } from "../middleware/auth.middleware.js";
-import { createCategoryController } from "../controllers/categoryController.js";
 
-const categoryRoute = express.Router();
+const router = express.Router();
 
-// router
-categoryRoute.post(
-  "/create-category",
-  userVerify,
-  isAdmin,
-  createCategoryController
-);
+// create category
+router.post("/create-category", userVerify, isAdmin, createCategoryController);
 
-export default categoryRoute;
+// update category
+router.put("/update-category/:id", updateCategory);
+
+// get all category
+router.get("/get-category", getAllCategory);
+
+// get single category
+router.get("/single-category/:slug", getSingleCategory);
+
+// delete category
+router.delete("/delete-category/:id", userVerify, isAdmin, deleteCategory);
+
+export default router;

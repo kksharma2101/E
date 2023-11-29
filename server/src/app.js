@@ -5,6 +5,7 @@ import cors from "cors";
 import connectDb from "../config/db.config.js";
 import router from "../routers/auth.router.js";
 import categoryRoute from "../routers/categoryRoutes.js";
+import productRouter from "../routers/productRoutes.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(cors({ origin: "http://localhost:3000" }));
 // router call
 app.use("/api", router);
 app.use("/api/category", categoryRoute);
+app.use("/api/product", productRouter);
 
 // call database
 connectDb();
