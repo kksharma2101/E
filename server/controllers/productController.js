@@ -43,7 +43,9 @@ export const createProduct = async (req, res) => {
 // update product
 export const updateProduct = async (req, res) => {
   try {
-    const { description, price, category, quantity, shipping } = req.fields;
+    const { name, description, price, category, quantity, shipping } =
+      req.fields;
+
     const { photo } = req.files;
     //alidation
     switch (true) {
@@ -63,20 +65,20 @@ export const updateProduct = async (req, res) => {
           .send({ error: "photo is Required and should be less then 1mb" });
     }
 
-    const products = await productModel.findByIdAndUpdate(
+    const product = await products.findByIdAndUpdate(
       req.params.pid,
       { ...req.fields, slug: slugify(name) },
       { new: true }
     );
     if (photo) {
-      products.photo.data = fs.readFileSync(photo.path);
-      products.photo.contentType = photo.type;
+      product.photo.data = fs.readFileSync(photo.path);
+      product.photo.contentType = photo.type;
     }
-    await products.save();
+    await product.save();
     res.status(201).send({
       success: true,
       message: "Product Updated Successfully",
-      products,
+      product,
     });
   } catch (error) {
     console.log(error);

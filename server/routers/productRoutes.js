@@ -22,7 +22,13 @@ router.post(
 );
 
 // update product
-router.put("/update-product/:pid", userVerify, isAdmin, updateProduct);
+router.put(
+  "/update-product/:pid",
+  userVerify,
+  isAdmin,
+  formidable(),
+  updateProduct
+);
 
 // get all product
 router.get("/get-product", getAllProduct);
