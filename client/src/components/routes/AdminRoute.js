@@ -20,7 +20,7 @@ export default function AdminRoute() {
     if (auth?.token) authCheck();
   }, [auth?.token]);
 
-  return ok ? <Spinner path="" /> : <Outlet />;
+  return ok ? <Outlet /> : <Spinner path="" />;
 }
 // Outlet use for nested routhing
 // export default PrivateRoutes;

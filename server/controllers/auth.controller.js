@@ -7,10 +7,10 @@ import AppError from "../utils/error.utils.js";
 import JWT from "jsonwebtoken";
 
 // cookieOpetions
-const cookieOptions = {
-  maxAge: 2 * 24 * 60 * 60 * 1000,
-  httpOnly: true,
-};
+// const cookieOptions = {
+//   maxAge: 2 * 24 * 60 * 60 * 1000,
+//   httpOnly: true,
+// };
 
 // register controllers
 const register = async (req, res, next) => {
@@ -58,7 +58,7 @@ const register = async (req, res, next) => {
       }
     );
 
-    res.cookie("token", token, cookieOptions);
+    // res.cookie("token", token, cookieOptions);
 
     res.status(200).json({
       success: true,
@@ -106,7 +106,7 @@ const login = async (req, res, next) => {
       }
     );
 
-    res.cookie("token", token, cookieOptions);
+    // res.cookie("token", token, cookieOptions);
 
     res.status(200).json({
       success: true,

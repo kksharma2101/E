@@ -1,5 +1,5 @@
 import JWT from "jsonwebtoken";
-import userModel from "../models/userModel.js";
+import User from "../models/userModel.js";
 
 export const userVerify = async (req, res, next) => {
   try {
@@ -16,7 +16,7 @@ export const userVerify = async (req, res, next) => {
 
 export const isAdmin = async (req, res, next) => {
   try {
-    const user = await userModel.findById(req.user._id);
+    const user = await User.findById(req.user._id);
     if (user.role !== 1) {
       return res.status(401).send({
         success: false,

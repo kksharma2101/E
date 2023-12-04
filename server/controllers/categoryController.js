@@ -2,7 +2,7 @@ import Category from "../models/categoryModels.js";
 import slugify from "slugify";
 
 // create category
-export const createCategoryController = async (req, res) => {
+export const createCategory = async (req, res) => {
   try {
     const { name } = req.body;
     if (!name) {
@@ -107,7 +107,8 @@ export const getSingleCategory = async (req, res) => {
 // delete category
 export const deleteCategory = async (req, res) => {
   try {
-    await Category.findByIdAndDelete({ _id: req.params.id });
+    const { id } = req.params;
+    await Category.findByIdAndDelete(id);
 
     res.status(200).json({
       success: true,

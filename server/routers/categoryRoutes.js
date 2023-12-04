@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  createCategoryController,
+  createCategory,
   deleteCategory,
   getAllCategory,
   getSingleCategory,
@@ -11,7 +11,7 @@ import { isAdmin, userVerify } from "../middleware/auth.middleware.js";
 const router = express.Router();
 
 // create category
-router.post("/create-category", userVerify, isAdmin, createCategoryController);
+router.post("/create-category", userVerify, isAdmin, createCategory);
 
 // update category
 router.put("/update-category/:id", updateCategory);
