@@ -8,6 +8,7 @@ const connectDb = async () => {
     }
   } catch (e) {
     console.log(`${e.message}`.red);
+    console.log("error")
   }
 };
 export default connectDb;
