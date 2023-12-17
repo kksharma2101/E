@@ -27,6 +27,7 @@ const CreateCategory = () => {
       } else {
         toast.error(data.message);
       }
+      setName("")
     } catch (error) {
       console.log(error);
       toast.error("somthing went wrong in input form");
