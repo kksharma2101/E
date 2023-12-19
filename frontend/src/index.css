@@ -94,3 +94,9 @@
   flex-direction: column;
   height: 70vh;
 }
+/* ===========================
+====Register page css====== */
+.product-link {
+  text-decoration: none;
+  color: #000 !important;
+}
