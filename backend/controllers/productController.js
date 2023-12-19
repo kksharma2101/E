@@ -129,7 +129,7 @@ export const getSingleProduct = async (req, res) => {
       .populate("category")
       .select("-photo");
 
-    res.status(200).json({
+    res.status(200).send({
       success: true,
       message: "Product list get successfully",
       product,

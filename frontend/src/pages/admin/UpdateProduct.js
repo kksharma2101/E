@@ -3,12 +3,13 @@ import Layout from "../../components/layout/Layout";
 import AdminMenu from "../../components/layout/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Select } from "antd";
 const { Option } = Select;
 
 const UpdateProduct = () => {
   const navigate = useNavigate();
+  const params = useParams();
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
@@ -17,17 +18,29 @@ const UpdateProduct = () => {
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
+  const [id, setId] = useState("");
 
   //   get single product
   const getSingleProduct = async () => {
     try {
       const { data } = await axios.get(
-        `/api/product/get-product/:${params.slug}`
+        `/api/product/single-product/${params.slug}`
       );
+      setCategory(data?.product.category._id);
+      setId(data.product._id);
+      setName(data?.product.name);
+      setDescription(data?.product.description);
+      setPrice(data?.product.price);
+      setQuantity(data?.product.quantity);
+      setShipping(data?.product.shipping);
+      setPhoto(data?.product.photo);
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    getSingleProduct();
+  }, []);
 
   // get all categories
   const getAllCategories = async () => {
@@ -59,7 +72,7 @@ const UpdateProduct = () => {
       productData.append("category", category);
 
       const { data } = await axios.put(
-        `/api/product/update-product/:${id}`,
+        `/api/product/update-product/${id}`,
         productData
       );
       if (data?.success) {
@@ -92,6 +105,7 @@ const UpdateProduct = () => {
                 onChange={(value) => {
                   setCategory(value);
                 }}
+                value={category}
               >
                 {categories?.map((c) => (
                   <Option key={c._id} value={c._id}>
@@ -114,11 +128,20 @@ const UpdateProduct = () => {
                 </label>
               </div>
               <div className="mb-3">
-                {photo && (
+                {photo ? (
                   <div className="text-center">
                     <img
                       src={URL.createObjectURL(photo)}
-                      alt="product photo"
+                      alt="product_photo"
+                      height={"200px"}
+                      className="img img-responsive"
+                    />
+                  </div>
+                ) : (
+                  <div className="text-center">
+                    <img
+                      src={`/api/product/product-photo/${id}`}
+                      alt="product_photo"
                       height={"200px"}
                       className="img img-responsive"
                     />
@@ -165,14 +188,14 @@ const UpdateProduct = () => {
                 <Select
                   bordered={false}
                   size="large"
-                  value={shipping}
+                  value={shipping ? "Yes" : "No"}
                   placeholder="Select shipping"
                   // showSearch
                   className="form-select p-0"
                   onChange={(value) => setShipping(value)}
                 >
-                  <Option value="0">Yes</Option>
-                  <Option value="1">No</Option>
+                  <Option value="0">No</Option>
+                  <Option value="1">Yes</Option>
                 </Select>
               </div>
               <div>
