@@ -33,7 +33,6 @@ const UpdateProduct = () => {
       setPrice(data?.product.price);
       setQuantity(data?.product.quantity);
       setShipping(data?.product.shipping);
-      setPhoto(data?.product.photo);
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +67,7 @@ const UpdateProduct = () => {
       productData.append("description", description);
       productData.append("price", price);
       productData.append("quantity", quantity);
-      productData.append("photo", photo);
+      photo && productData.append("photo", photo);
       productData.append("category", category);
 
       const { data } = await axios.put(
@@ -84,6 +83,19 @@ const UpdateProduct = () => {
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
+    }
+  };
+
+  // handleDelete
+  const handleDelete = async () => {
+    try {
+      const answer = window.prompt("Are sure");
+      if (!answer) return;
+      await axios.delete(`/api/product/delete-product/${id}`);
+      toast.success("Product deleted successfully");
+      navigate("/dashboard/admin/products");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -198,13 +210,20 @@ const UpdateProduct = () => {
                   <Option value="1">Yes</Option>
                 </Select>
               </div>
-              <div>
+              <div className="d-flex gap-2">
                 <button
                   type="submit"
                   className="btn btn-primary"
                   onClick={handleUpdate}
                 >
                   Update Product
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-danger"
+                  onClick={handleDelete}
+                >
+                  Delete Product
                 </button>
               </div>
               {/* </form> */}

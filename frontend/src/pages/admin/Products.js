@@ -31,7 +31,7 @@ const Products = () => {
         </div>
         <div className="col-md-9">
           <h1 className="text-center">All Products List</h1>
-          <div className="d-flex flex-wrap justify-content-center">
+          <div className="d-flex flex-wrap">
             {products?.map((pro) => (
               <Link
                 key={pro._id}
@@ -46,6 +46,7 @@ const Products = () => {
                   />
                   <div className="card-body">
                     <h5 className="card-title">{pro.name}</h5>
+                    <h5>{pro.price}</h5>
                     <p className="card-text">{pro.description}</p>
                   </div>
                 </div>
