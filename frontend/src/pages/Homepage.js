@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
-// import { json } from "react-router-dom";
 import { Prices } from "../components/Prices";
 
 const Homepage = () => {
@@ -10,21 +9,6 @@ const Homepage = () => {
   const [category, setCategory] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
-
-  // get all products
-  const getAllProducts = async () => {
-    try {
-      const { data } = await axios.get("/api/product/get-product");
-      if (data?.success) {
-        setProducts(data?.product);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getAllProducts();
-  }, []);
 
   // get all categories
   const getAllCategory = async () => {
@@ -37,11 +21,28 @@ const Homepage = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getAllCategory();
   }, []);
 
-  // hanelde filter
+  // get all products
+  const getAllProducts = async () => {
+    try {
+      const { data } = await axios.get("/api/product/get-product");
+      if (data?.success) {
+        setProducts(data?.product);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (!checked.length || !radio.length) getAllProducts();
+  }, [checked.length, radio.length]);
+
+  // filter by category
   const handleFilter = (value, id) => {
     let all = [...checked];
     if (value) {
@@ -52,11 +53,29 @@ const Homepage = () => {
     setChecked(all);
   };
 
+  // filter product
+  const filterProduct = async () => {
+    try {
+      const { data } = await axios.post("/api/product/filter-product", {
+        checked,
+        radio,
+      });
+      if (data?.success) {
+        setProducts(data?.product);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (checked.length || radio.length) filterProduct();
+  }, [checked, radio]);
+
   return (
     <Layout title={"All Products - Best offers"}>
       <div className="row mt-2">
         <div className="col-md-3">
-          {/* {JSON.stringify(radio)} */}
           <h5 className="text-center">Filter by category</h5>
           <div className="d-flex flex-column ms-2">
             {category?.map((cat) => (
@@ -83,7 +102,6 @@ const Homepage = () => {
         </div>
         <div className="col-md-9">
           <h2 className="text-center">All Products</h2>
-          <h3>Products</h3>
           <div className="d-flex flex-wrap">
             {products?.map((pro) => (
               <div
@@ -98,7 +116,10 @@ const Homepage = () => {
                 />
                 <div className="card-body">
                   <h2>{pro.name}</h2>
-                  <p className="card-text">{pro.description}</p>
+                  <h2>$ {pro.price}</h2>
+                  <p className="card-text">
+                    {pro.description.substring(0, 30)}...
+                  </p>
                   <button href="#" class="btn btn-primary">
                     More Details
                   </button>
