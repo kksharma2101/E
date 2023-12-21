@@ -75,9 +75,9 @@ const Homepage = () => {
   return (
     <Layout title={"All Products - Best offers"}>
       <div className="row mt-2">
-        <div className="col-md-3">
+        <div className="col-md-2">
           <h5 className="text-center">Filter by category</h5>
-          <div className="d-flex flex-column ms-2">
+          <div className="d-flex flex-column ms-1">
             {category?.map((cat) => (
               <Checkbox
                 key={cat._id}
@@ -89,8 +89,8 @@ const Homepage = () => {
               </Checkbox>
             ))}
           </div>
-          <h5 className="text-center">Filter by Prices</h5>
-          <div className="d-flex flex-column ms-2">
+          <h5 className="text-center mt-2">Filter by Prices</h5>
+          <div className="d-flex flex-column ms-1">
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {Prices?.map((p) => (
                 <div key={p._id}>
@@ -99,10 +99,18 @@ const Homepage = () => {
               ))}
             </Radio.Group>
           </div>
+          <div className="d-flex flex-column ms-1 mt-2">
+            <button
+              className="bg-primary-subtle border"
+              onClick={() => window.location.reload()}
+            >
+              Reset
+            </button>
+          </div>
         </div>
-        <div className="col-md-9">
+        <div className="col-md-10 ">
           <h2 className="text-center">All Products</h2>
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap justify-content-center">
             {products?.map((pro) => (
               <div
                 className="card m-2"
@@ -115,12 +123,12 @@ const Homepage = () => {
                   alt={pro.name}
                 />
                 <div className="card-body">
-                  <h2>{pro.name}</h2>
-                  <h2>$ {pro.price}</h2>
+                  <h3>{pro.name}</h3>
+                  <h3>$ {pro.price}</h3>
                   <p className="card-text">
                     {pro.description.substring(0, 30)}...
                   </p>
-                  <button href="#" class="btn btn-primary">
+                  <button href="#" class="btn btn-primary ms-2">
                     More Details
                   </button>
                   <button href="#" class="btn btn-secondary ms-2">
