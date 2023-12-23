@@ -14,6 +14,22 @@ const Homepage = () => {
   const [loading, setLoading] = useState(false);
 
   // console.log(total)
+  // loadmore
+  const loadMore = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(`/api/product/product-list/${page}`);
+      setProducts([...products, ...data?.product]);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    if (page == 1) return;
+    loadMore();
+  }, [page]);
 
   // get total pages
   const getTotal = async () => {
@@ -47,7 +63,6 @@ const Homepage = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(`/api/product/product-list/${page}`);
-      console.log(data);
       setLoading(false);
       // if (data?.success) {
       setProducts(data?.product);
