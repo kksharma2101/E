@@ -204,3 +204,44 @@ export const productFilter = async (req, res) => {
     });
   }
 };
+
+// product count
+export const productCount = async (req, res) => {
+  try {
+    const total = await products.find({}).estimatedDocumentCount();
+    res.status(200).json({
+      success: true,
+      total,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Error in proudct count",
+      error,
+    });
+  }
+};
+
+// product list
+export const productList = async (req, res) => {
+  try {
+    const perPage = 6;
+    const page = req.params.page ? req.params.page : 1;
+    const product = await products
+      .find({})
+      .select("-photo")
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
+    res.status(200).json({
+      success: true,
+      product,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Error in product list",
+      error,
+    });
+  }
+};

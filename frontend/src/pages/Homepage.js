@@ -9,6 +9,21 @@ const Homepage = () => {
   const [category, setCategory] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  // console.log(total)
+
+  // get total pages
+  const getTotal = async () => {
+    try {
+      const { data } = await axios.get("/api/product/product-count");
+      setTotal(data?.total);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // get all categories
   const getAllCategory = async () => {
@@ -24,16 +39,21 @@ const Homepage = () => {
 
   useEffect(() => {
     getAllCategory();
+    getTotal();
   }, []);
 
   // get all products
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("/api/product/get-product");
-      if (data?.success) {
-        setProducts(data?.product);
-      }
+      setLoading(true);
+      const { data } = await axios.get(`/api/product/product-list/${page}`);
+      console.log(data);
+      setLoading(false);
+      // if (data?.success) {
+      setProducts(data?.product);
+      // }
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -99,9 +119,9 @@ const Homepage = () => {
               ))}
             </Radio.Group>
           </div>
-          <div className="d-flex flex-column ms-1 mt-2">
+          <div className="d-flex flex-column ms-1 mt-3">
             <button
-              className="bg-primary-subtle border"
+              className="btn btn-primary p-0"
               onClick={() => window.location.reload()}
             >
               Reset
@@ -137,6 +157,19 @@ const Homepage = () => {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="m-2 p-2">
+            {products && products.length < total && (
+              <button
+                className="btn btn-warning"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(page + 1);
+                }}
+              >
+                {loading ? "Loading...." : "Loadmore"}
+              </button>
+            )}
           </div>
         </div>
       </div>
