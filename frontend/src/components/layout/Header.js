@@ -4,6 +4,7 @@ import { SiTrustedshops } from "react-icons/si";
 import { useAuth } from "../../context/Auth.js";
 import { toast } from "react-hot-toast";
 import Dashboard from "../../pages/user/Dashboard.js";
+import SearchInputs from "../form/SearchInputs.js";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -14,7 +15,7 @@ const Header = () => {
       user: null,
     });
     localStorage.removeItem("auth");
-    await toast.success("User logout successfully");
+    toast.success("User logout successfully");
   };
 
   return (
@@ -36,6 +37,9 @@ const Header = () => {
             <NavLink to="/" className="navbar-brand nav-link">
               <SiTrustedshops /> ecommerce
             </NavLink>
+            <div>
+              <SearchInputs />
+            </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink to="/" className="nav-link">

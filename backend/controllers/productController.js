@@ -245,3 +245,25 @@ export const productList = async (req, res) => {
     });
   }
 };
+
+// search product
+export const productSearch = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const product = await product
+      .find({
+        $or: [
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
+        ],
+      })
+      .select("-photo");
+    res.json(resutls);
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Error in search product",
+      error,
+    });
+  }
+};

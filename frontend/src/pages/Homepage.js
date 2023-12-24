@@ -13,7 +13,6 @@ const Homepage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  // console.log(total)
   // loadmore
   const loadMore = async () => {
     try {
@@ -144,7 +143,7 @@ const Homepage = () => {
           </div>
         </div>
         <div className="col-md-10 ">
-          <h2 className="text-center">All Products</h2>
+          <h2 className="text-center mb-4">All Products</h2>
           <div className="d-flex flex-wrap justify-content-center">
             {products?.map((pro) => (
               <div
