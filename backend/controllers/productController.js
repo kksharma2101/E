@@ -250,7 +250,7 @@ export const productList = async (req, res) => {
 export const productSearch = async (req, res) => {
   try {
     const { keyword } = req.params;
-    const product = await product
+    const product = await products
       .find({
         $or: [
           { name: { $regex: keyword, $options: "i" } },
@@ -258,11 +258,36 @@ export const productSearch = async (req, res) => {
         ],
       })
       .select("-photo");
-    res.json(resutls);
+    res.json(product);
   } catch (error) {
     res.status(404).json({
       success: false,
       message: "Error in search product",
+      error,
+    });
+  }
+};
+
+// similar product
+export const relatedProduct = async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+    const product = await products
+      .find({
+        category: cid,
+        _id: { $ne: pid },
+      })
+      .select("-photo")
+      .limit(4)
+      .populate("category");
+    res.status(200).json({
+      success: true,
+      product,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Error while getting in related product",
       error,
     });
   }
