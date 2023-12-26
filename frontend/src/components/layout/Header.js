@@ -1,13 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { SiTrustedshops } from "react-icons/si";
 import { useAuth } from "../../context/Auth.js";
 import { toast } from "react-hot-toast";
 import Dashboard from "../../pages/user/Dashboard.js";
 import SearchInputs from "../form/SearchInputs.js";
+import useCategory from "../../hooks/useCategory.js";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const category = useCategory();
+  // console.log(auth);
 
   const handleLogout = async () => {
     setAuth({
@@ -46,11 +49,34 @@ const Header = () => {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/category" className="nav-link">
-                  Category
-                </NavLink>
+
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  to={"/category"}
+                  data-bs-toggle="dropdown"
+                >
+                  Categories
+                </Link>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to={"/categories"}>
+                      All Categories
+                    </Link>
+                  </li>
+                  {category?.map((c) => (
+                    <li key={c._id}>
+                      <Link
+                        className="dropdown-item"
+                        to={`/category/${c.slug}`}
+                      >
+                        {c.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </li>
+
               <li className="nav-item">
                 <NavLink to="/about" className="nav-link">
                   About

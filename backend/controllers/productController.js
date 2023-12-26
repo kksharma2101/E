@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import products from "../models/productModel.js";
+import categoryModel from "../models/categoryModels.js";
 import fs from "fs";
 import slugify from "slugify";
 
@@ -288,6 +289,26 @@ export const relatedProduct = async (req, res) => {
     res.status(404).json({
       success: false,
       message: "Error while getting in related product",
+      error,
+    });
+  }
+};
+
+//get product by category
+export const productByCategory = async (req, res) => {
+  try {
+    const category = await categoryModel.findOne({ slug: req.params.slug });
+    const product = await products.find({ category });
+
+    res.status(200).json({
+      success: true,
+      category,
+      product,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Error while in get product by category",
       error,
     });
   }

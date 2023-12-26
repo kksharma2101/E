@@ -6,6 +6,7 @@ import {
   getAllProduct,
   getProductPhoto,
   getSingleProduct,
+  productByCategory,
   productCount,
   productFilter,
   productList,
@@ -61,5 +62,8 @@ router.get("/search/:keyword", productSearch);
 
 // related product
 router.get("/related-product/:pid/:cid", relatedProduct);
+
+// get product by category
+router.get("/category-product/:slug", productByCategory);
 
 export default router;
