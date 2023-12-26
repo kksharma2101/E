@@ -6,8 +6,11 @@ import { toast } from "react-hot-toast";
 import Dashboard from "../../pages/user/Dashboard.js";
 import SearchInputs from "../form/SearchInputs.js";
 import useCategory from "../../hooks/useCategory.js";
+import { useCart } from "../../context/cart.js";
+import { Badge } from "antd";
 
 const Header = () => {
+  const [cart] = useCart();
   const [auth, setAuth] = useAuth();
   const category = useCategory();
   // console.log(auth);
@@ -133,10 +136,12 @@ const Header = () => {
                 </>
               )}
 
-              <li className="nav-item">
-                <NavLink to="/cart" className="nav-link">
-                  Cart (0)
-                </NavLink>
+              <li className="nav-item pe-2 pt-1">
+                <Badge count={cart?.length} showZero>
+                  <NavLink to="/cart" className="nav-link">
+                    Cart
+                  </NavLink>
+                </Badge>
               </li>
             </ul>
           </div>
