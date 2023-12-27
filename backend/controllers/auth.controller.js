@@ -156,9 +156,54 @@ const forgotPasswordController = async (req, res) => {
   }
 };
 
+// user profile updated
+const userProfileUpdate = async (req, res) => {
+  try {
+    const { name, phone, address, password } = req.body;
+
+    const user = await User.findById(req.user._id);
+
+    // check password
+    if (password && password.length < 6) {
+      return res.json({
+        error: "Password required is grater then six character",
+      });
+    }
+
+    // password hashed
+    const passwordHashed = await (password
+      ? passwordHash(password)
+      : undefined);
+
+    const updateUser = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        name: name || user.name,
+        phone: phone || user.phone,
+        address: address || user.address,
+        password: passwordHashed || user.password,
+      },
+      { new: "true" }
+    );
+    // updateUser.save()
+
+    res.status(200).json({
+      success: true,
+      message: "User profile updated successfully",
+      updateUser,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Error in user updated profile ",
+      error,
+    });
+  }
+};
+
 // test controllers
 const test = (req, res) => {
   res.send("check user verify");
 };
 
-export { register, login, test, forgotPasswordController };
+export { register, login, test, forgotPasswordController, userProfileUpdate };

@@ -4,6 +4,7 @@ import {
   register,
   test,
   forgotPasswordController,
+  userProfileUpdate,
 } from "../controllers/auth.controller.js";
 import { isAdmin, userVerify } from "../middleware/auth.middleware.js";
 
@@ -26,5 +27,8 @@ router.get("/user-auth", userVerify, (req, res) => {
 router.get("/admin-auth", userVerify, isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });
+
+// user profile updated
+router.put("/profile", userVerify, userProfileUpdate);
 
 export default router;
