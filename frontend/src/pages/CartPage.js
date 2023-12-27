@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../components/layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/Auth";
@@ -8,11 +8,33 @@ const CartPage = () => {
   const [cart, setCart] = useCart();
   //   console.log(cart);
 
-  // handleRemoveItem
+  // handle totalPrice
+  const totalPrice = () => {
+    try {
+      let total = 0;
+      cart.map((item) => {
+        total += item.price;
+      });
+      return total.toLocaleString("en-us", {
+        style: "currency",
+        currency: "USD",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // handle  RemoveItem
   const handleRemoveItem = (pid) => {
-    let cardItem = [...cart];
-    setCart(cardItem.filter((index) => index !== pid));
-    return cardItem;
+    try {
+      let myCart = [...cart];
+      let index = myCart.findIndex((item) => item._id === pid);
+      myCart.splice(index, 1);
+      setCart(myCart);
+      localStorage.setItem("cart", JSON.stringify(myCart));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -22,7 +44,7 @@ const CartPage = () => {
           <h1 className="text-center mt-2 bg-light came">
             {`Hello Mr/Mis ${auth?.token && auth?.user?.name}`}
           </h1>
-          <h4 className="text-center mt-1">
+          <h4 className="text-center mt-1 text-secondary">
             {cart?.length > 1
               ? `You have ${cart?.length} item in your cart ${
                   !auth?.user ? "Please checkout login" : ""
@@ -40,7 +62,7 @@ const CartPage = () => {
                     class="card-img-top"
                     alt={pro.name}
                     width={"100%"}
-                    height={"140px"}
+                    // height={"140px"}
                   />
                 </div>
                 <div className="col-md-9">
@@ -57,7 +79,12 @@ const CartPage = () => {
               </div>
             ))}
           </div>
-          <div className="col-md-5">Payment and checkout</div>
+          <div className="col-md-5 text-center">
+            <h2>Cart Summary</h2>
+            <h4 className="text-secondary">Total | Checkout | Payment</h4>
+            <hr />
+            <h4>Total: {totalPrice()}</h4>
+          </div>
         </div>
       </div>
     </Layout>
