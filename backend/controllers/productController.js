@@ -3,6 +3,15 @@ import products from "../models/productModel.js";
 import categoryModel from "../models/categoryModels.js";
 import fs from "fs";
 import slugify from "slugify";
+import braintree from "braintree";
+
+// payment gateway
+var gateway = new braintree.BraintreeGateway({
+  environment: braintree.Environment.Sandbox,
+  merchantId: process.env.BRAINTREE_MERCHANT_ID,
+  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
+  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+});
 
 // create product
 export const createProduct = async (req, res) => {
@@ -313,3 +322,25 @@ export const productByCategory = async (req, res) => {
     });
   }
 };
+
+// braintree controller for token
+export const tokenBraintree = async (req, res) => {
+  try {
+    gateway.clientToken.generate({}, function (err, response) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(response);
+      }
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Error in Payment controller",
+      error,
+    });
+  }
+};
+
+// braintree controller for payment
+export const paymentBraintree = async (req, res) => {};

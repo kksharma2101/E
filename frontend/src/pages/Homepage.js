@@ -164,9 +164,7 @@ const Homepage = () => {
                 <div className="card-body">
                   <h3>{pro.name}</h3>
                   <h3>$ {pro.price}</h3>
-                  <p className="card-text">
-                    {pro.description.substring(0, 30)}...
-                  </p>
+                  <p className="card-text">{pro.description}...</p>
                   <button
                     href="#"
                     class="btn btn-primary ms-2"
@@ -179,7 +177,10 @@ const Homepage = () => {
                     class="btn btn-secondary ms-2"
                     onClick={() => {
                       setCart([...cart, pro]);
-                      localStorage.setItem("cart", JSON.stringify([...cart, pro]));
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, pro])
+                      );
                       toast.success("Item add to cart successfully");
                     }}
                   >
