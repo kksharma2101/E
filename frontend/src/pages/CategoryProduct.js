@@ -10,7 +10,7 @@ const CategoryProduct = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState();
 
-  console.log(products);
+  // console.log(products);
   //   get category by product
   const getCategoryByProduct = async () => {
     try {

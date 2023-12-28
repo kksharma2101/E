@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { SiTrustedshops } from "react-icons/si";
 import { useAuth } from "../../context/Auth.js";
 import { toast } from "react-hot-toast";
-import Dashboard from "../../pages/user/Dashboard.js";
+// import Dashboard from "../../pages/user/Dashboard.js";
 import SearchInputs from "../form/SearchInputs.js";
 import useCategory from "../../hooks/useCategory.js";
 import { useCart } from "../../context/cart.js";
@@ -41,7 +41,11 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <NavLink to="/" className="navbar-brand nav-link">
-              <SiTrustedshops /> ecommerce
+              <img
+                src={require("./shoping-logo.png")}
+                alt="logo"
+                className="logo"
+              />
             </NavLink>
             <div>
               <SearchInputs />
@@ -136,11 +140,11 @@ const Header = () => {
                 </>
               )}
 
-              <li className="nav-item">
+              <li className="nav-item pt-1">
                 <Badge count={cart?.length} showZero>
-                <NavLink to="/cart" className="nav-link">
-                  Cart
-                </NavLink>
+                  <NavLink to="/cart" className="nav-link fw-bold">
+                    Cart
+                  </NavLink>
                 </Badge>
               </li>
             </ul>

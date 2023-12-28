@@ -4,6 +4,7 @@ import categoryModel from "../models/categoryModels.js";
 import fs from "fs";
 import slugify from "slugify";
 import braintree from "braintree";
+import orderModel from "../models/orderModel.js";
 
 // payment gateway
 var gateway = new braintree.BraintreeGateway({
@@ -343,4 +344,40 @@ export const tokenBraintree = async (req, res) => {
 };
 
 // braintree controller for payment
-export const paymentBraintree = async (req, res) => {};
+export const paymentBraintree = async (req, res) => {
+  try {
+    const { cart, nonce } = req.body;
+    let total = 0;
+    cart.map((i) => {
+      total += i.price;
+    });
+
+    let newTransaction = gateway.transaction.sale(
+      {
+        amount: total,
+        paymentMethodNonce: nonce,
+        options: {
+          submitForSettlement: true,
+        },
+      },
+      function (err, result) {
+        if (result) {
+          const order = new orderModel({
+            product: cart,
+            payment: result,
+            buyer: req.user._id,
+          }).save;
+          res.json({ ok: true });
+        } else {
+          res.status(500).send(err);
+        }
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({
+      success: false,
+      message: "Error in payment controller",
+    });
+  }
+};

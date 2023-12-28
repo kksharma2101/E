@@ -8,7 +8,9 @@
 /* font-family: 'Playfair Display', serif; */
 /* font-family: 'Poppins', sans-serif; */
 /* font-family: 'PT Serif', serif; */
-
+.logo {
+  height: 40px;
+}
 /* navbar style */
 .navbar {
   font-family: "Poppins", sans-serif;
