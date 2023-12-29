@@ -160,11 +160,13 @@ const Homepage = () => {
                   src={`/api/product/product-photo/${pro._id}`}
                   class="card-img-top"
                   alt={pro.name}
+                  width={"180px"}
+                  height={"300px"}
                 />
                 <div className="card-body">
                   <h3>{pro.name}</h3>
                   <h3>$ {pro.price}</h3>
-                  <p className="card-text">{pro.description}...</p>
+                  <p className="card-text">{pro.description.substring(0,40)}...</p>
                   <button
                     href="#"
                     class="btn btn-primary ms-2"

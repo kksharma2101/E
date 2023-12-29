@@ -1,11 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/Auth";
+import { useNavigate } from "react-router-dom";
+import DropIn from "braintree-web-drop-in-react";
+import axios from "axios";
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const [auth] = useAuth();
   const [cart, setCart] = useCart();
+  const [clientToken, setClientToken] = useState("");
+  const [instance, setInstance] = useState("");
+  const [loading, setLoading] = useState(false);
   //   console.log(cart);
 
   // handle totalPrice
@@ -37,6 +44,23 @@ const CartPage = () => {
     }
   };
 
+  // get payment token
+  const getPaymentToken = async () => {
+    try {
+      const { data } = await axios.get("/api/product/braintree/token");
+      setClientToken(data?.clientToken);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getPaymentToken();
+  }, [auth?.token]);
+
+  // handlePayment
+  const handlePayment = async () => {};
+
   return (
     <Layout>
       <div className="container">
@@ -61,8 +85,8 @@ const CartPage = () => {
                     src={`/api/product/product-photo/${pro._id}`}
                     class="card-img-top"
                     alt={pro.name}
-                    width={"100%"}
-                    // height={"140px"}
+                    width={"180px"}
+                    height={"250px"}
                   />
                 </div>
                 <div className="col-md-9">
@@ -84,6 +108,21 @@ const CartPage = () => {
             <h4 className="text-secondary">Total | Checkout | Payment</h4>
             <hr />
             <h4>Total: {totalPrice()}</h4>
+            <div className="mt-2 mb-2">
+              <DropIn
+                options={{
+                  authorization: clientToken,
+                  paypal: {
+                    flow: "vault",
+                  },
+                }}
+                onInstance={(instance) => setInstance(instance)}
+              />
+
+              <button className="btn btn-primary" onClick={handlePayment}>
+                Make payment
+              </button>
+            </div>
           </div>
         </div>
       </div>

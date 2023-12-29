@@ -12,7 +12,7 @@ const ProductDetails = () => {
   //   intial call
   useEffect(() => {
     if (params?.slug) getProduct();
-  }, []);
+  }, [params?.slug]);
 
   // get product
   const getProduct = async () => {
@@ -71,6 +71,8 @@ const ProductDetails = () => {
               src={`/api/product/product-photo/${pro._id}`}
               class="card-img-top"
               alt={pro.name}
+              width={"180px"}
+              height={"250px"}
             />
             <div className="card-body">
               <h3>{pro.name}</h3>

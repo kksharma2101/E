@@ -335,11 +335,7 @@ export const tokenBraintree = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(404).json({
-      success: false,
-      message: "Error in Payment controller",
-      error,
-    });
+    console.log(error);
   }
 };
 
@@ -366,7 +362,7 @@ export const paymentBraintree = async (req, res) => {
             product: cart,
             payment: result,
             buyer: req.user._id,
-          }).save;
+          }).save();
           res.json({ ok: true });
         } else {
           res.status(500).send(err);
@@ -375,9 +371,5 @@ export const paymentBraintree = async (req, res) => {
     );
   } catch (error) {
     console.log(error);
-    res.status(404).json({
-      success: false,
-      message: "Error in payment controller",
-    });
   }
 };
