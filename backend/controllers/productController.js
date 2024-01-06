@@ -348,7 +348,7 @@ export const paymentBraintree = async (req, res) => {
       total += i.price;
     });
 
-    let newTransaction = gateway.transaction.sale(
+    gateway.transaction.sale(
       {
         amount: total,
         paymentMethodNonce: nonce,
