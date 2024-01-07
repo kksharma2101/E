@@ -7,7 +7,7 @@ import braintree from "braintree";
 import orderModel from "../models/orderModel.js";
 
 // payment gateway
-var gateway = new braintree.BraintreeGateway({
+let gateway = new braintree.BraintreeGateway({
   environment: braintree.Environment.Sandbox,
   merchantId: process.env.BRAINTREE_MERCHANT_ID,
   publicKey: process.env.BRAINTREE_PUBLIC_KEY,
