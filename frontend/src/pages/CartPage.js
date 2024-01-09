@@ -68,6 +68,7 @@ const CartPage = () => {
         nonce,
         cart,
       });
+      // console.log(data)
       setLoading(false);
       localStorage.removeItem("cart");
       setCart([]);
@@ -144,7 +145,7 @@ const CartPage = () => {
                   <button
                     className="btn btn-primary"
                     onClick={handlePayment}
-                    disabled={!loading || !instance}
+                    disabled={!loading || !instance || !auth?.user.address}
                   >
                     {loading ? "Processing ...." : "Make Payment"}
                   </button>
