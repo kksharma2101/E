@@ -135,9 +135,9 @@ const CartPage = () => {
                   <DropIn
                     options={{
                       authorization: clientToken,
-                      // paypal: {
-                      //   flow: 'checkout'
-                      // },
+                      paypal: {
+                        flow: 'checkout'
+                      },
                     }}
                     onInstance={(instance) => setInstance(instance)}
                   />
