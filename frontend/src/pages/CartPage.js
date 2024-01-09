@@ -126,7 +126,7 @@ const CartPage = () => {
             <h4 className="text-secondary">Total | Checkout | Payment</h4>
             <hr />
             <h4>Total: {totalPrice()}</h4>
-            <div className="mt-2">
+            <div className="mt-2 mb-2">
               {!clientToken || !auth?.token || !cart?.length ? (
                 ""
               ) : (
@@ -134,9 +134,9 @@ const CartPage = () => {
                   <DropIn
                     options={{
                       authorization: clientToken,
-                      paypal: {
-                        flow: "vault",
-                      },
+                      // paypal: {
+                      //   flow: 'checkout'
+                      // },
                     }}
                     onInstance={(instance) => setInstance(instance)}
                   />
