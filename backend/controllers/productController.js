@@ -12,7 +12,6 @@ let gateway = new braintree.BraintreeGateway({
   publicKey: process.env.BRAINTREE_PUBLIC_KEY,
   privateKey: process.env.BRAINTREE_PRIVATE_KEY,
 });
-console.log(process.env.BRAINTREE_MERCHANT_ID);
 
 // create product
 export const createProduct = async (req, res) => {

@@ -68,7 +68,7 @@ const CartPage = () => {
         nonce,
         cart,
       });
-      // console.log(data)
+      console.log(data);
       setLoading(false);
       localStorage.removeItem("cart");
       setCart([]);
@@ -135,9 +135,9 @@ const CartPage = () => {
                   <DropIn
                     options={{
                       authorization: clientToken,
-                      paypal: {
-                        flow: 'checkout'
-                      },
+                      // paypal: {
+                      //   flow: 'checkout'
+                      // },
                     }}
                     onInstance={(instance) => setInstance(instance)}
                   />
@@ -145,7 +145,7 @@ const CartPage = () => {
                   <button
                     className="btn btn-primary"
                     onClick={handlePayment}
-                    disabled={!loading || !instance || !auth?.user.address}
+                    // disabled={!loading || !instance || !auth?.user.address}
                   >
                     {loading ? "Processing ...." : "Make Payment"}
                   </button>

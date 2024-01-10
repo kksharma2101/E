@@ -5,6 +5,7 @@ import {
 import User from "../models/userModel.js";
 import AppError from "../utils/error.utils.js";
 import JWT from "jsonwebtoken";
+import Orders from "../models/orderModel.js";
 
 // cookieOpetions
 // const cookieOptions = {
@@ -201,9 +202,32 @@ const userProfileUpdate = async (req, res) => {
   }
 };
 
+// order controller
+const getOrderController = async (req, res) => {
+  try {
+    const orders = await Orders.find({ buyer: req.user._id })
+      .populate("products", "-photo")
+      .populate("buyer", "name");
+    res.json(orders);
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Error in order controller",
+      error,
+    });
+  }
+};
+
 // test controllers
 const test = (req, res) => {
   res.send("check user verify");
 };
 
-export { register, login, test, forgotPasswordController, userProfileUpdate };
+export {
+  register,
+  login,
+  test,
+  forgotPasswordController,
+  userProfileUpdate,
+  getOrderController,
+};
