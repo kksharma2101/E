@@ -33,6 +33,6 @@ router.get("/admin-auth", userVerify, isAdmin, (req, res) => {
 router.put("/profile", userVerify, userProfileUpdate);
 
 // order router
-router.get("/order", userVerify, getOrderController);
+router.get("/orders", userVerify, getOrderController);
 
 export default router;

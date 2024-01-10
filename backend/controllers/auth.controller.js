@@ -5,7 +5,7 @@ import {
 import User from "../models/userModel.js";
 import AppError from "../utils/error.utils.js";
 import JWT from "jsonwebtoken";
-import Orders from "../models/orderModel.js";
+import orderModel from "../models/orderModel.js";
 
 // cookieOpetions
 // const cookieOptions = {
@@ -205,7 +205,8 @@ const userProfileUpdate = async (req, res) => {
 // order controller
 const getOrderController = async (req, res) => {
   try {
-    const orders = await Orders.find({ buyer: req.user._id })
+    const orders = await orderModel
+      .find({ buyer: req.user._id })
       .populate("products", "-photo")
       .populate("buyer", "name");
     res.json(orders);

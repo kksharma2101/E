@@ -68,7 +68,7 @@ const CartPage = () => {
         nonce,
         cart,
       });
-      console.log(data);
+      // console.log(data);
       setLoading(false);
       localStorage.removeItem("cart");
       setCart([]);

@@ -347,7 +347,7 @@ export const paymentBraintree = async (req, res) => {
       total += i.price;
     });
 
-    let newTransaction = gateway.transaction.sale(
+    gateway.transaction.sale(
       {
         amount: total,
         paymentMethodNonce: nonce,
@@ -356,15 +356,22 @@ export const paymentBraintree = async (req, res) => {
         },
       },
       function (err, result) {
-        if (result) {
-          let order = new orderModel({
+        if (err) {
+          console.error(err);
+          return;
+        }
+
+        if (result.success) {
+          new orderModel({
             product: cart,
             payment: result,
             buyer: req.user._id,
           }).save();
           res.json({ ok: true });
+          // console.log("Transaction ID: " + result.transaction.id);
         } else {
-          res.status(500).send(err);
+          res.status(400).send(err);
+          console.error(result.message);
         }
       }
     );
