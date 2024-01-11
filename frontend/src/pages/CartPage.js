@@ -68,11 +68,11 @@ const CartPage = () => {
         nonce,
         cart,
       });
-      // console.log(data);
+      console.log(data);
       setLoading(false);
       localStorage.removeItem("cart");
       setCart([]);
-      navigate("/dashboard/user/orders");
+      // navigate("/dashboard/user/orders");
       toast.success("Payment Completed Successfully ");
     } catch (error) {
       console.log(error);

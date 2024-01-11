@@ -362,12 +362,12 @@ export const paymentBraintree = async (req, res) => {
         }
 
         if (result.success) {
-          new orderModel({
+          const newOrder = new orderModel({
             product: cart,
             payment: result,
             buyer: req.user._id,
           }).save();
-          res.json({ ok: true });
+          res.json({ ok: true, newOrder });
           // console.log("Transaction ID: " + result.transaction.id);
         } else {
           res.status(400).send(err);
