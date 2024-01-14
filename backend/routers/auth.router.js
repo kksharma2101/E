@@ -7,6 +7,7 @@ import {
   userProfileUpdate,
   getOrderController,
   getAllOrderController,
+  updateOrderStatus,
 } from "../controllers/auth.controller.js";
 import { isAdmin, userVerify } from "../middleware/auth.middleware.js";
 
@@ -38,5 +39,8 @@ router.get("/orders", userVerify, getOrderController);
 
 // get all orders
 router.get("/all-orders", userVerify, isAdmin, getAllOrderController);
+
+// update orider status
+router.put("/update-status/:orderId", userVerify, isAdmin, updateOrderStatus);
 
 export default router;

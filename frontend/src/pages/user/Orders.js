@@ -32,24 +32,22 @@ const Orders = () => {
                 <table className="table">
                   <thead>
                     <tr>
-                      <td scope="col">#</td>
-                      <td scope="col">Status</td>
-                      <td scope="col">Buyer</td>
+                      <th scope="col">#</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Buyer</th>
                       {/* <td scope="col">Orders</td> */}
-                      <td scope="col">Payment</td>
-                      <td scope="col">Quantity</td>
+                      <th scope="col">Payment</th>
+                      <th scope="col">Quantity</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="col">{index + 1}</th>
-                      <th scope="col">{item?.status}</th>
-                      <th scope="col">{item?.buyer?.name}</th>
+                      <td>{index + 1}</td>
+                      <td>{item?.status}</td>
+                      <td>{item?.buyer?.name}</td>
                       {/* if your want to show date, install moment package in frontend side */}
-                      <th scope="col">
-                        {item?.payment?.success ? "Success" : "Failed"}
-                      </th>
-                      <th>{item?.products?.length}</th>
+                      <td>{item?.payment?.success ? "Success" : "Failed"}</td>
+                      <td>{item?.products?.length}</td>
                     </tr>
                   </tbody>
                 </table>

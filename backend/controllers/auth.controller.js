@@ -6,6 +6,7 @@ import User from "../models/userModel.js";
 import AppError from "../utils/error.utils.js";
 import JWT from "jsonwebtoken";
 import orderModel from "../models/orderModel.js";
+import { json } from "express";
 
 // cookieOpetions
 // const cookieOptions = {
@@ -225,13 +226,37 @@ const getAllOrderController = async (req, res) => {
     const orders = await orderModel
       .find({})
       .populate("products", "-photo")
-      .populate("buyer", "name")
-      .sort({ createAt: "-1" });
+      .populate("buyer", "name");
+    // .sort({ createdAt: "-1" });
     res.json(orders);
   } catch (error) {
     res.status(404).json({
       success: false,
-      message: "Error in order controller",
+      message: "Error in getAllorder controller",
+      error,
+    });
+  }
+};
+
+// update order status
+const updateOrderStatus = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.body;
+    const order = await orderModel.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
+    res.status(200).json({
+      success: true,
+      message: "Order updated successfully",
+      order,
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Error in updateOrderStatus",
       error,
     });
   }
@@ -250,4 +275,5 @@ export {
   userProfileUpdate,
   getOrderController,
   getAllOrderController,
+  updateOrderStatus,
 };
