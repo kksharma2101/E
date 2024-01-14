@@ -219,6 +219,24 @@ const getOrderController = async (req, res) => {
   }
 };
 
+// get all orders
+const getAllOrderController = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({})
+      .populate("products", "-photo")
+      .populate("buyer", "name")
+      .sort({ createAt: "-1" });
+    res.json(orders);
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Error in order controller",
+      error,
+    });
+  }
+};
+
 // test controllers
 const test = (req, res) => {
   res.send("check user verify");
@@ -231,4 +249,5 @@ export {
   forgotPasswordController,
   userProfileUpdate,
   getOrderController,
+  getAllOrderController,
 };

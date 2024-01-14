@@ -6,6 +6,7 @@ import {
   forgotPasswordController,
   userProfileUpdate,
   getOrderController,
+  getAllOrderController,
 } from "../controllers/auth.controller.js";
 import { isAdmin, userVerify } from "../middleware/auth.middleware.js";
 
@@ -34,5 +35,8 @@ router.put("/profile", userVerify, userProfileUpdate);
 
 // order router
 router.get("/orders", userVerify, getOrderController);
+
+// get all orders
+router.get("/all-orders", userVerify, isAdmin, getAllOrderController);
 
 export default router;
