@@ -1,4 +1,4 @@
-import products from "../models/productModel.js";
+import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModels.js";
 import fs from "fs";
 import slugify from "slugify";
@@ -6,7 +6,7 @@ import braintree from "braintree";
 import orderModel from "../models/orderModel.js";
 
 // payment gateway
-let gateway = new braintree.BraintreeGateway({
+var gateway = new braintree.BraintreeGateway({
   environment: braintree.Environment.Sandbox,
   merchantId: process.env.BRAINTREE_MERCHANT_ID,
   publicKey: process.env.BRAINTREE_PUBLIC_KEY,
@@ -29,7 +29,7 @@ export const createProduct = async (req, res) => {
         message: "Photo is required and should be less then 1mb",
       });
     }
-    const product = new products({ ...req.fields, slug: slugify(name) });
+    const product = new productModel({ ...req.fields, slug: slugify(name) });
     if (photo) {
       product.photo.data = fs.readFileSync(photo.path);
       product.photo.contentType = photo.type;
@@ -57,7 +57,7 @@ export const updateProduct = async (req, res) => {
       req.fields;
 
     const { photo } = req.files;
-    //alidation
+    //validation
     switch (true) {
       case !name:
         return res.status(500).send({ error: "Name is Required" });
@@ -75,7 +75,7 @@ export const updateProduct = async (req, res) => {
           .send({ error: "photo is Required and should be less then 1mb" });
     }
 
-    const product = await products.findByIdAndUpdate(
+    const product = await productModel.findByIdAndUpdate(
       req.params.pid,
       { ...req.fields, slug: slugify(name) },
       { new: true }
@@ -103,7 +103,7 @@ export const updateProduct = async (req, res) => {
 // get all product
 export const getAllProduct = async (req, res) => {
   try {
-    const product = await products
+    const product = await productModel
       .find({})
       .populate("category")
       .select("-photo")
@@ -134,7 +134,7 @@ export const getAllProduct = async (req, res) => {
 // get single product
 export const getSingleProduct = async (req, res) => {
   try {
-    const product = await products
+    const product = await productModel
       .findOne({ slug: req.params.slug })
       .populate("category")
       .select("-photo");
@@ -157,7 +157,7 @@ export const getSingleProduct = async (req, res) => {
 // product photo
 export const getProductPhoto = async (req, res) => {
   try {
-    const product = await products.findById(req.params.pid).select("photo");
+    const product = await productModel.findById(req.params.pid).select("photo");
     if (product.photo.data) {
       res.set("content-type", product.photo.contentType);
       return res.status(200).send(product.photo.data);
@@ -175,7 +175,7 @@ export const getProductPhoto = async (req, res) => {
 // delete product
 export const deleteProduct = async (req, res) => {
   try {
-    const product = await products
+    const product = await productModel
       .findByIdAndDelete({ _id: req.params.id })
       .select("-photo");
 
@@ -200,7 +200,7 @@ export const productFilter = async (req, res) => {
     let args = {};
     if (checked.length > 0) args.category = checked;
     if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
-    const product = await products.find(args);
+    const product = await productModel.find(args);
     res.status(200).send({
       success: true,
       product,
@@ -218,7 +218,7 @@ export const productFilter = async (req, res) => {
 // product count
 export const productCount = async (req, res) => {
   try {
-    const total = await products.find({}).estimatedDocumentCount();
+    const total = await productModel.find({}).estimatedDocumentCount();
     res.status(200).json({
       success: true,
       total,
@@ -237,7 +237,7 @@ export const productList = async (req, res) => {
   try {
     const perPage = 6;
     const page = req.params.page ? req.params.page : 1;
-    const product = await products
+    const product = await productModel
       .find({})
       .select("-photo")
       .skip((page - 1) * perPage)
@@ -260,7 +260,7 @@ export const productList = async (req, res) => {
 export const productSearch = async (req, res) => {
   try {
     const { keyword } = req.params;
-    const product = await products
+    const product = await productModel
       .find({
         $or: [
           { name: { $regex: keyword, $options: "i" } },
@@ -307,7 +307,7 @@ export const relatedProduct = async (req, res) => {
 export const productByCategory = async (req, res) => {
   try {
     const category = await categoryModel.findOne({ slug: req.params.slug });
-    const product = await products.find({ category });
+    const product = await productModel.find({ category });
 
     res.status(200).json({
       success: true,
@@ -355,23 +355,16 @@ export const paymentBraintree = async (req, res) => {
           submitForSettlement: true,
         },
       },
-      function (err, result) {
-        if (err) {
-          console.error(err);
-          return;
-        }
-
-        if (result.success) {
-          const newOrder = new orderModel({
-            product: cart,
+      function (error, result) {
+        if (result) {
+          const order = new orderModel({
+            products: cart,
             payment: result,
             buyer: req.user._id,
           }).save();
-          res.json({ ok: true, newOrder });
-          // console.log("Transaction ID: " + result.transaction.id);
+          res.json({ ok: true, order });
         } else {
-          res.status(400).send(err);
-          console.error(result.message);
+          res.status(500).send(error);
         }
       }
     );

@@ -14,7 +14,6 @@ const CartPage = () => {
   const [clientToken, setClientToken] = useState("");
   const [instance, setInstance] = useState("");
   const [loading, setLoading] = useState(false);
-  //   console.log(cart);
 
   // handle totalPrice
   const totalPrice = () => {
@@ -68,11 +67,10 @@ const CartPage = () => {
         nonce,
         cart,
       });
-      console.log(data);
       setLoading(false);
       localStorage.removeItem("cart");
       setCart([]);
-      // navigate("/dashboard/user/orders");
+      navigate("/dashboard/user/orders");
       toast.success("Payment Completed Successfully ");
     } catch (error) {
       console.log(error);
@@ -136,7 +134,7 @@ const CartPage = () => {
                     options={{
                       authorization: clientToken,
                       // paypal: {
-                      //   flow: 'checkout'
+                      //   flow: "vault",
                       // },
                     }}
                     onInstance={(instance) => setInstance(instance)}
@@ -145,9 +143,11 @@ const CartPage = () => {
                   <button
                     className="btn btn-primary"
                     onClick={handlePayment}
-                    // disabled={!loading || !instance || !auth?.user.address}
+                    disabled={loading || !instance || !auth?.user?.address}
                   >
-                    {loading ? "Processing ...." : "Make Payment"}
+                    {loading
+                      ? ("Processing ....", console.log(loading))
+                      : "Make Payment"}
                   </button>
                 </>
               )}
