@@ -14,7 +14,7 @@ const AdminDashboard = () => {
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <div className="card w-75 p-3">
+            <div className="card w-75 p-3" style={{ color: "black" }}>
               <h3>Admin name: {auth?.user?.name}</h3>
               <h4>Admin contact: {auth.user.phone}</h4>
               <h4>Admin city: {auth.user.address}</h4>
