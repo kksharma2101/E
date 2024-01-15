@@ -3,16 +3,27 @@
   width: 100%;
   /* background-color: #bebdc5; */
 }
+@media screen and (max-width: 512px) {
+  .carousel-item > img {
+    height: 8rem;
+    width: 50%;
+  }
+}
+@media screen and (max-width: 812px) {
+  .carousel-item > img {
+    height: 14rem;
+    width: 70%;
+  }
+}
+.carousel-inner {
+  padding-top: 60px;
+}
 
 .home-page h1 {
   /* color: gray; */
   font-family: "Playfair Display", serif;
 }
 
-/* .home-page {
-  display: flex;
-  flex-wrap: wrap;
-} */
 .home-page .card {
   background-color: rgba(128, 128, 128, 0.097);
   /* width: 18rem; */

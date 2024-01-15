@@ -8,6 +8,7 @@ import SearchInputs from "../form/SearchInputs.js";
 import useCategory from "../../hooks/useCategory.js";
 import { useCart } from "../../context/cart.js";
 import { Badge } from "antd";
+import "../../styles/Header.css";
 
 const Header = () => {
   const [cart] = useCart();
@@ -27,7 +28,7 @@ const Header = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
+        <div className="header container-fluid">
           <button
             className="navbar-toggler"
             type="button"
