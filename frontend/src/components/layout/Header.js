@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { SiTrustedshops } from "react-icons/si";
+// import { SiTrustedshops } from "react-icons/si";
 import { useAuth } from "../../context/Auth.js";
 import { toast } from "react-hot-toast";
 // import Dashboard from "../../pages/user/Dashboard.js";
@@ -27,7 +27,125 @@ const Header = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar">
+        {/* <div className="container"> */}
+        <div className="logo">
+          <NavLink to="/">
+            <img src={require("./shoping-logo.png")} alt="logo" id="logo" />
+          </NavLink>
+        </div>
+        <div className="searchInput">
+          <SearchInputs />
+        </div>
+        <div className="itemContainer">
+          <ul className="unorderdList">
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+
+            <li className="nav-item dropdown">
+              <Link
+                className="nav-link dropdown-toggle"
+                to={"/category"}
+                data-bs-toggle="dropdown"
+              >
+                Categories
+              </Link>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link className="dropdown-item" to={"/categories"}>
+                    All Categories
+                  </Link>
+                </li>
+                {category?.map((c) => (
+                  <li key={c._id}>
+                    <Link className="dropdown-item" to={`/category/${c.slug}`}>
+                      {c.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
+
+            {/* <li>
+              <Link to={"/category"}>Categories</Link>
+              <ul>
+                <li>
+                  <Link to={"/categories"}>All Categories</Link>
+                </li>
+                {category?.map((c) => (
+                  <li key={c._id}>
+                    <Link to={`/category/${c.slug}`}>{c.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </li> */}
+
+            <li>
+              <NavLink to="/about">About</NavLink>
+            </li>
+
+            {!auth?.user ? (
+              <>
+                <li className="nav-item">
+                  <NavLink to="/register" className="nav-link">
+                    Register
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/login" className="nav-link">
+                    Login
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item dropdown">
+                  <NavLink
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    style={{ border: "none" }}
+                  >
+                    {auth?.user?.name}
+                  </NavLink>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <NavLink
+                        to={`/dashboard/${
+                          auth?.user?.role === 1 ? "admin" : "user"
+                        }`}
+                        className="dropdown-item"
+                      >
+                        Dashboard
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        onClick={handleLogout}
+                        to="/login"
+                        className="dropdown-item"
+                      >
+                        Logout
+                      </NavLink>
+                    </li>
+                  </ul>
+                </li>
+              </>
+            )}
+
+            <li>
+              <Badge count={cart?.length} showZero>
+                <NavLink to="/cart">Cart</NavLink>
+              </Badge>
+            </li>
+          </ul>
+        </div>
+        {/* </div> */}
+      </nav>
+
+      {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="header container-fluid">
           <button
             className="navbar-toggler"
@@ -151,7 +269,7 @@ const Header = () => {
             </ul>
           </div>
         </div>
-      </nav>
+      </nav> */}
     </>
   );
 };

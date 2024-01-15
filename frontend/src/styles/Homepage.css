@@ -16,7 +16,14 @@
   }
 }
 .carousel-inner {
-  padding-top: 60px;
+  padding-top: 78px;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .home-page h1 {
@@ -26,24 +33,25 @@
 
 .home-page .card {
   background-color: rgba(128, 128, 128, 0.097);
-  /* width: 18rem; */
+  width: 17rem;
 }
 .home-page .card-name-price {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 }
 
 .home-page .card-price {
   color: green;
   font-weight: bold;
+  margin-left: 5px;
 }
 .home-page .card-text {
   color: aliceblue !important;
 }
 .home-page button {
   border-radius: 0;
-  width: 100%;
   border-top-left-radius: 5px;
   border-bottom-right-radius: 5px;
   font-size: 14px;
@@ -54,9 +62,6 @@
   transform: scale(0.9);
 }
 
-/* .home-page .card-img-top {
-  height: 300px !important;
-} */
 /* ==================
   filters
   ============== */

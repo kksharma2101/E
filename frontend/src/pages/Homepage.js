@@ -194,18 +194,14 @@ const Homepage = () => {
           </div>
         </div>
         <div className="col-md-10 ">
-          <div className="d-flex flex-wrap ">
+          <div className="d-flex flex-wrap justify-content-center">
             {products?.map((pro) => (
-              <div
-                className="card m-2"
-                style={{ width: "18rem" }}
-                key={pro._id}
-              >
+              <div className="card m-2" key={pro._id}>
                 <img
                   src={`/api/product/product-photo/${pro._id}`}
                   class="card-img-top"
                   alt={pro.name}
-                  width={"180px"}
+                  width={"100%"}
                   height={"300px"}
                 />
                 <div className="card-body">
@@ -224,14 +220,14 @@ const Homepage = () => {
                   <div className="card-name-price">
                     <button
                       href="#"
-                      class="btn btn-primary ms-2"
+                      class="btn btn-primary ms-1"
                       onClick={() => navigate(`/product/${pro.slug}`)}
                     >
                       More Details
                     </button>
                     <button
                       href="#"
-                      class="btn btn-secondary ms-2"
+                      class="btn btn-secondary ms-1"
                       onClick={() => {
                         setCart([...cart, pro]);
                         localStorage.setItem(
