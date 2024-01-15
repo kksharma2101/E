@@ -28,8 +28,8 @@ const Orders = () => {
           <div className="col-md-9">
             <h2 className="text-center">All Orders</h2>
             {order?.map((item, index) => (
-              <div className="border">
-                <table className="table">
+              <div className="border" key={index}>
+                <table className="table" style={{ color: "white" }}>
                   <thead>
                     <tr>
                       <th scope="col">#</th>
@@ -66,7 +66,7 @@ const Orders = () => {
                           height={"200px"}
                         />
                       </div>
-                      <div className="col-md-8">
+                      <div className="col-md-8" style={{ color: "black" }}>
                         <p>{pro?.name}</p>
                         <p>{pro?.description.substring(0, 50)}</p>
                         <p>{pro?.price}</p>

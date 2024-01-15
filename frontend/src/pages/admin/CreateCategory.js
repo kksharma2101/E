@@ -27,7 +27,7 @@ const CreateCategory = () => {
       } else {
         toast.error(data.message);
       }
-      setName("")
+      setName("");
     } catch (error) {
       console.log(error);
       toast.error("somthing went wrong in input form");
@@ -111,12 +111,12 @@ const CreateCategory = () => {
             <div>
               <table className="table">
                 <thead>
-                  <tr>
+                  <tr style={{ color: "white" }}>
                     <th scope="col">Name</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody style={{ color: "white" }}>
                   {categories?.map((cate) => (
                     <>
                       <tr>

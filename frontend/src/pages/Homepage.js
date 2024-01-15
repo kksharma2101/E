@@ -6,6 +6,8 @@ import { Prices } from "../components/Prices";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
 import toast from "react-hot-toast";
+import "../styles/Homepage.css";
+// import img from "../craousel/images(1).jpg";
 
 const Homepage = () => {
   const [cart, setCart] = useCart();
@@ -113,9 +115,70 @@ const Homepage = () => {
 
   return (
     <Layout title={"All Products - Best offers"}>
-      <div className="row mt-2">
-        <div className="col-md-2">
-          <h5 className="text-center">Filter by category</h5>
+      {/* add craousel */}
+      <div
+        id="carouselExampleControls"
+        className="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img
+              src="/images/banner1.png"
+              className="d-block w-100"
+              alt="craousel"
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              src="/images/banner2.jpg"
+              className="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              src="/images/banner3.png"
+              className="d-block w-100"
+              alt="..."
+            />
+          </div>
+        </div>
+        <button
+          className="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span className="carousel-control-prev-icon" aria-hidden="true" />
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span className="carousel-control-next-icon" aria-hidden="true" />
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>
+      {/*  */}
+      <div className="container-fluid row mt-2 home-page">
+        <div className="col-md-2 filters">
+          <h5 className="mt-2">Prices</h5>
+          <div className="d-flex flex-column ms-1">
+            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+              {Prices?.map((p) => (
+                <div key={p._id}>
+                  <Radio value={p.array} className="color">
+                    {p.name}
+                  </Radio>
+                </div>
+              ))}
+            </Radio.Group>
+          </div>
+          <h5 className="">Category</h5>
           <div className="d-flex flex-column ms-1">
             {category?.map((cat) => (
               <Checkbox
@@ -123,33 +186,15 @@ const Homepage = () => {
                 onChange={(e) => {
                   handleFilter(e.target.checked, cat._id);
                 }}
+                className="color"
               >
                 {cat.name}
               </Checkbox>
             ))}
           </div>
-          <h5 className="text-center mt-2">Filter by Prices</h5>
-          <div className="d-flex flex-column ms-1">
-            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-              {Prices?.map((p) => (
-                <div key={p._id}>
-                  <Radio value={p.array}>{p.name}</Radio>
-                </div>
-              ))}
-            </Radio.Group>
-          </div>
-          <div className="d-flex flex-column ms-1 mt-3">
-            <button
-              className="btn btn-primary p-0"
-              onClick={() => window.location.reload()}
-            >
-              Reset
-            </button>
-          </div>
         </div>
         <div className="col-md-10 ">
-          <h2 className="text-center mb-4">All Products</h2>
-          <div className="d-flex flex-wrap justify-content-center">
+          <div className="d-flex flex-wrap ">
             {products?.map((pro) => (
               <div
                 className="card m-2"
@@ -164,30 +209,41 @@ const Homepage = () => {
                   height={"300px"}
                 />
                 <div className="card-body">
-                  <h3>{pro.name}</h3>
-                  <h3>$ {pro.price}</h3>
-                  <p className="card-text">{pro.description.substring(0,40)}...</p>
-                  <button
-                    href="#"
-                    class="btn btn-primary ms-2"
-                    onClick={() => navigate(`/product/${pro.slug}`)}
-                  >
-                    More Details
-                  </button>
-                  <button
-                    href="#"
-                    class="btn btn-secondary ms-2"
-                    onClick={() => {
-                      setCart([...cart, pro]);
-                      localStorage.setItem(
-                        "cart",
-                        JSON.stringify([...cart, pro])
-                      );
-                      toast.success("Item add to cart successfully");
-                    }}
-                  >
-                    Add to Cart
-                  </button>
+                  <div className="card-name-price">
+                    <h5 className="card-title">{pro.name}</h5>
+                    <h5 className="card-title card-price">
+                      {pro.price.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </h5>
+                  </div>
+                  <p className="card-text">
+                    {pro.description.substring(0, 40)}...
+                  </p>
+                  <div className="card-name-price">
+                    <button
+                      href="#"
+                      class="btn btn-primary ms-2"
+                      onClick={() => navigate(`/product/${pro.slug}`)}
+                    >
+                      More Details
+                    </button>
+                    <button
+                      href="#"
+                      class="btn btn-secondary ms-2"
+                      onClick={() => {
+                        setCart([...cart, pro]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, pro])
+                        );
+                        toast.success("Item add to cart successfully");
+                      }}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -195,7 +251,7 @@ const Homepage = () => {
           <div className="m-2 p-2">
             {products && products.length < total && (
               <button
-                className="btn btn-warning"
+                className="btn btn-warning loadmore"
                 onClick={(e) => {
                   e.preventDefault();
                   setPage(page + 1);

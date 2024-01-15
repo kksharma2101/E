@@ -1,0 +1,64 @@
+.carousel-item > img {
+  height: 20rem;
+  width: 100%;
+  /* background-color: #bebdc5; */
+}
+
+.home-page h1 {
+  /* color: gray; */
+  font-family: "Playfair Display", serif;
+}
+
+/* .home-page {
+  display: flex;
+  flex-wrap: wrap;
+} */
+.home-page .card {
+  background-color: rgba(128, 128, 128, 0.097);
+  /* width: 18rem; */
+}
+.home-page .card-name-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.home-page .card-price {
+  color: green;
+  font-weight: bold;
+}
+.home-page .card-text {
+  color: aliceblue !important;
+}
+.home-page button {
+  border-radius: 0;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.home-page .card img:hover {
+  transform: scale(0.9);
+}
+
+/* .home-page .card-img-top {
+  height: 300px !important;
+} */
+/* ==================
+  filters
+  ============== */
+.filters h5 {
+  margin-top: 20px;
+  border-bottom: 1px solid rgba(226, 215, 215, 0.337);
+}
+.color {
+  color: white !important;
+}
+
+.loadmore {
+  color: green;
+  font-weight: bold;
+  font-size: 20px !important;
+}

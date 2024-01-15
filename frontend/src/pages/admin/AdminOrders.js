@@ -53,7 +53,7 @@ const AdminOrders = () => {
           <h2 className="text-center">All Orders</h2>
           {order?.map((item, index) => (
             <div className="border shadow" key={index}>
-              <table className="table">
+              <table className="table" style={{ color: "white" }}>
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -69,7 +69,7 @@ const AdminOrders = () => {
                     <td>{index + 1}</td>
                     <td>
                       <Select
-                        bordered={false}
+                        bordered={true}
                         onChange={(value) => handleChange(item._id, value)}
                         defaultValue={item?.status}
                       >
@@ -87,7 +87,7 @@ const AdminOrders = () => {
                   </tr>
                 </tbody>
               </table>
-              <div className="container">
+              <div className="container" style={{ color: "black" }}>
                 {item?.products?.map((pro) => (
                   <div
                     className="row card flex-row p-2 mt-2 mb-2"
