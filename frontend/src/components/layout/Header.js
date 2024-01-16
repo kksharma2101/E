@@ -14,6 +14,9 @@ const Header = () => {
   const [cart] = useCart();
   const [auth, setAuth] = useAuth();
   const category = useCategory();
+  const [show, setShow] = useState("show");
+  const [hide, setHide] = useState("hide");
+  const [active, setActive] = useState(false);
   // console.log(auth);
 
   // handle Logout
@@ -27,7 +30,9 @@ const Header = () => {
   };
 
   // handleNabvar
-  const handleNabvar = () => {};
+  const handleNabvar = () => {
+    !active ? setShow("show") : setHide("hide");
+  };
 
   return (
     <>
@@ -40,6 +45,11 @@ const Header = () => {
         </div>
         <div className="searchInput">
           <SearchInputs />
+        </div>
+        <div className="hamburger" onClick={handleNabvar}>
+          <div className="burger"></div>
+          <div className="burger"></div>
+          <div className="burger"></div>
         </div>
         <div className="itemContainer">
           <ul className="unorderdList">
@@ -127,18 +137,14 @@ const Header = () => {
 
             <li>
               <Badge count={cart?.length} showZero>
-                <NavLink to="/cart" className="p-2 cart">
+                <NavLink to="/cart" className="cart">
                   Cart
                 </NavLink>
               </Badge>
             </li>
           </ul>
         </div>
-        <div className="hamburger" onClick={handleNabvar}>
-          <div className="burger"></div>
-          <div className="burger"></div>
-          <div className="burger"></div>
-        </div>
+
         {/* </div> */}
       </nav>
 

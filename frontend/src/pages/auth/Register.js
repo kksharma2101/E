@@ -37,7 +37,7 @@ const Register = () => {
         // console.log(auth);
         localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/");
-        await toast.success(res.data.message);
+        toast.success(res.data.message);
       } else {
         toast.error(res.data.message);
       }
@@ -65,6 +65,7 @@ const Register = () => {
                 id="exampleInputName"
                 placeholder="Name"
                 required
+                maxLength={8}
               />
             </div>
 
