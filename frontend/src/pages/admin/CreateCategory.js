@@ -96,8 +96,8 @@ const CreateCategory = () => {
 
   return (
     <Layout title={"Dashboard - Create Category"}>
-      <div className="container-fluid m-3 p-3 dashboard">
-        <div className="row">
+      <div className="container-fluid p-3 dashboard">
+        <div className="row" style={{ marginTop: "70px" }}>
           <div className="col-md-3">{<AdminMenu />}</div>
           <div className="col-md-9">
             <h2>Manage Category</h2>

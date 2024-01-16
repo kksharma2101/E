@@ -42,47 +42,49 @@ const Login = () => {
 
   return (
     <Layout title={"Register - Ecommerce app"}>
-      <div className="form-container">
-        <form onSubmit={handleSubmit}>
-          <h1 className="title">Login Page</h1>
+      <div className="container-fluid p-3 dashboard">
+        <div className="form-container" style={{ marginTop: "70px" }}>
+          <form onSubmit={handleSubmit}>
+            <h1 className="title">Login Page</h1>
 
-          <div className="mb-2">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail"
-              placeholder="Email"
-              required
-            />
-          </div>
+            <div className="mb-2">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                id="exampleInputEmail"
+                placeholder="Email"
+                required
+              />
+            </div>
 
-          <div className="mb-2">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-              required
-            />
-          </div>
+            <div className="mb-2">
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                required
+              />
+            </div>
 
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-          <div className="mt-3">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => navigate("/forgot-password")}
-            >
-              Forgot Password
+            <button type="submit" className="btn btn-primary">
+              Submit
             </button>
-          </div>
-        </form>
+            <div className="mt-3">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => navigate("/forgot-password")}
+              >
+                Forgot Password
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </Layout>
   );

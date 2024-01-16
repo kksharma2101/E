@@ -131,7 +131,7 @@ const Homepage = () => {
           </div>
           <div className="carousel-item">
             <img
-              src="/images/banner2.jpg"
+              src="/images/banner2.png"
               className="d-block w-100"
               alt="..."
             />

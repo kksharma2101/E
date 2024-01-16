@@ -8,8 +8,8 @@ const AdminDashboard = () => {
 
   return (
     <Layout>
-      <div className="container-fluid m-3 p-3 dashboard">
-        <div className="row">
+      <div className="container-fluid  p-3 dashboard">
+        <div className="row" style={{ marginTop: "70px" }}>
           <div className="col-md-3">
             <AdminMenu />
           </div>

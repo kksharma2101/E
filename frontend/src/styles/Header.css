@@ -54,7 +54,7 @@
     width: 6rem;
   }
 }
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 716px) {
   .unorderdList {
     display: none;
   }

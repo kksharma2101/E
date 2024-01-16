@@ -49,85 +49,90 @@ const Register = () => {
 
   return (
     <Layout title={"Register - Ecommerce app"}>
-      <div className="form-container">
-        <form onSubmit={handleSubmit}>
-          <h1 className="title">Register Page</h1>
-          <div className="mb-2">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="form-control"
-              id="exampleInputName"
-              placeholder="Name"
-              required
-            />
-          </div>
+      <div className="container-fluid p-2 dashboard">
+        <div
+          className="form-container"
+          style={{ marginTop: "70px", color: "#000", height: "100vh" }}
+        >
+          <form onSubmit={handleSubmit}>
+            <h1 className="title">Register Page</h1>
+            <div className="mb-2">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="form-control"
+                id="exampleInputName"
+                placeholder="Name"
+                required
+              />
+            </div>
 
-          <div className="mb-2">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail"
-              placeholder="Email"
-              required
-            />
-          </div>
+            <div className="mb-2">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                id="exampleInputEmail"
+                placeholder="Email"
+                required
+              />
+            </div>
 
-          <div className="mb-2">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-              required
-            />
-          </div>
+            <div className="mb-2">
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                required
+              />
+            </div>
 
-          <div className="mb-2">
-            <input
-              type="number"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="form-control"
-              id="exampleInputPhone"
-              placeholder="Phone Number"
-              required
-            />
-          </div>
+            <div className="mb-2">
+              <input
+                type="number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="form-control"
+                id="exampleInputPhone"
+                placeholder="Phone Number"
+                required
+              />
+            </div>
 
-          <div className="mb-2">
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              className="form-control"
-              id="exampleInputAddress"
-              placeholder="Address"
-              required
-            />
-          </div>
+            <div className="mb-2">
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="form-control"
+                id="exampleInputAddress"
+                placeholder="Address"
+                required
+              />
+            </div>
 
-          <div className="mb-2">
-            <input
-              type="text"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              className="form-control"
-              id="exampleInputAnswer"
-              placeholder="Write your favorite something"
-              required
-            />
-          </div>
+            <div className="mb-2">
+              <input
+                type="text"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                className="form-control"
+                id="exampleInputAnswer"
+                placeholder="Write your favorite something"
+                required
+              />
+            </div>
 
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </Layout>
   );

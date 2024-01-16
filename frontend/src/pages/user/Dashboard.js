@@ -8,8 +8,8 @@ const Dashboard = () => {
 
   return (
     <Layout title={"Dashboard - Ecommerce App"}>
-      <div className="container-fluid p-3 m-3">
-        <div className="row">
+      <div className="container-fluid p-2">
+        <div className="row" style={{ marginTop: "70px" }}>
           <div className="col-md-3">{<UserMenu />}</div>
           <div className="col-md-9">
             <div className="card p-3" style={{ color: "black" }}>
