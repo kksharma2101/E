@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 // import { SiTrustedshops } from "react-icons/si";
 import { useAuth } from "../../context/Auth.js";
@@ -16,6 +16,7 @@ const Header = () => {
   const category = useCategory();
   // console.log(auth);
 
+  // handle Logout
   const handleLogout = async () => {
     setAuth({
       ...auth,
@@ -24,6 +25,9 @@ const Header = () => {
     localStorage.removeItem("auth");
     toast.success("User logout successfully");
   };
+
+  // handleNabvar
+  const handleNabvar = () => {};
 
   return (
     <>
@@ -40,7 +44,7 @@ const Header = () => {
         <div className="itemContainer">
           <ul className="unorderdList">
             <li>
-              <NavLink to="/">Home</NavLink>
+              <Link to="/">Home</Link>
             </li>
 
             <li className="nav-item dropdown">
@@ -66,20 +70,6 @@ const Header = () => {
                 ))}
               </ul>
             </li>
-
-            {/* <li>
-              <Link to={"/category"}>Categories</Link>
-              <ul>
-                <li>
-                  <Link to={"/categories"}>All Categories</Link>
-                </li>
-                {category?.map((c) => (
-                  <li key={c._id}>
-                    <Link to={`/category/${c.slug}`}>{c.name}</Link>
-                  </li>
-                ))}
-              </ul>
-            </li> */}
 
             <li>
               <NavLink to="/about">About</NavLink>
@@ -137,10 +127,17 @@ const Header = () => {
 
             <li>
               <Badge count={cart?.length} showZero>
-                <NavLink to="/cart">Cart</NavLink>
+                <NavLink to="/cart" className="p-2 cart">
+                  Cart
+                </NavLink>
               </Badge>
             </li>
           </ul>
+        </div>
+        <div className="hamburger" onClick={handleNabvar}>
+          <div className="burger"></div>
+          <div className="burger"></div>
+          <div className="burger"></div>
         </div>
         {/* </div> */}
       </nav>

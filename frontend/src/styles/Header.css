@@ -1,15 +1,14 @@
 .navbar {
   position: fixed;
-  /* transform: translateY(0); */
+  transform: translateY(0);
   width: 100%;
   height: 80px;
-  z-index: 100;
   transition: all ease 0.5s;
-  /* z-index: 2; */
+  z-index: 99;
   padding: 2px 25px;
+  background-color: #000000b1 !important;
 }
 .container {
-  background: rgba(0, 0, 0, 0.25);
   justify-content: space-between;
   display: flex;
   align-items: center;
@@ -24,10 +23,49 @@
   list-style: none;
   justify-content: space-around;
   font-family: "Poppins", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 25px;
   text-transform: uppercase;
+  margin-top: 20px;
 }
-.unorderdList > li {
-  border: none;
+.cart {
+  font-size: 18px;
+}
+.hamburger {
+  display: none;
+}
+.hamburger > div {
+  width: 22px;
+  height: 4px;
+  margin-top: 5px;
+  border-radius: 1px;
+  background-color: #786ce0;
+}
+.hamburger:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 930px) {
+  .searchInput {
+    display: none;
+  }
+  #logo {
+    width: 6rem;
+  }
+}
+@media screen and (max-width: 630px) {
+  .unorderdList {
+    display: none;
+  }
+  .searchInput {
+    display: block;
+    width: 60%;
+  }
+  .hamburger {
+    display: block;
+  }
+  .navbar {
+    padding: 2px 10px;
+  }
 }
