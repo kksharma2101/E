@@ -14,10 +14,7 @@ const Header = () => {
   const [cart] = useCart();
   const [auth, setAuth] = useAuth();
   const category = useCategory();
-  const [show, setShow] = useState("show");
-  const [hide, setHide] = useState("hide");
-  const [active, setActive] = useState(false);
-  // console.log(auth);
+  const [menuActive, setMenuActive] = useState(false);
 
   // handle Logout
   const handleLogout = async () => {
@@ -31,13 +28,12 @@ const Header = () => {
 
   // handleNabvar
   const handleNabvar = () => {
-    !active ? setShow("show") : setHide("hide");
+    setMenuActive(!menuActive);
   };
 
   return (
     <>
       <nav className="navbar">
-        {/* <div className="container"> */}
         <div className="logo">
           <NavLink to="/">
             <img src={require("./shoping-logo.png")} alt="logo" id="logo" />
@@ -51,7 +47,7 @@ const Header = () => {
           <div className="burger"></div>
           <div className="burger"></div>
         </div>
-        <div className="itemContainer">
+        <div className={!menuActive ? "itemContainer" : ""}>
           <ul className="unorderdList">
             <li>
               <Link to="/">Home</Link>
@@ -144,8 +140,6 @@ const Header = () => {
             </li>
           </ul>
         </div>
-
-        {/* </div> */}
       </nav>
 
       {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">

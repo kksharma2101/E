@@ -8,11 +8,6 @@
   padding: 2px 20px;
   background-color: #000000b1 !important;
 }
-.container {
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-}
 #logo {
   width: 8rem;
   border-radius: 20px;
@@ -46,7 +41,6 @@
   transform: scale(1.1);
   cursor: pointer;
 }
-
 @media screen and (max-width: 958px) {
   .searchInput {
     display: none;
@@ -56,16 +50,29 @@
   }
 }
 @media screen and (max-width: 705px) {
+  div.itemContainer {
+    display: none;
+  }
   .unorderdList {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    z-index: 1;
-    background-color: #000;
+    background-color: #000000;
     width: 100vw;
+    z-index: 2;
     padding: 10px 0;
     margin-top: 20px;
+  }
+  .unorderdList > li > a,
+  .cart {
+    text-decoration: none;
+  }
+  .unorderdList > li > a:hover,
+  .cart:hover {
+    color: #ffffffff;
+    font-size: 19px;
+    /* font-weight: 600; */
   }
   .searchInput {
     display: block;
@@ -85,6 +92,6 @@
     display: none;
   }
   .hamburger > div {
-    width: 25px;
+    width: 26px;
   }
 }
