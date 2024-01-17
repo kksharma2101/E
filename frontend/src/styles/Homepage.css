@@ -1,7 +1,6 @@
 .carousel-item > img {
   height: 20rem;
   width: 100%;
-  /* background-color: #bebdc5; */
 }
 @media screen and (max-width: 512px) {
   .carousel-item > img {
@@ -27,7 +26,6 @@
 }
 
 .home-page h1 {
-  /* color: gray; */
   font-family: "Playfair Display", serif;
 }
 
@@ -38,6 +36,7 @@
 .home-page .card-name-price {
   display: flex;
   flex-direction: row;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
   color: #fff;
@@ -46,7 +45,6 @@
 .home-page .card-price {
   color: green;
   font-weight: bold;
-  margin-left: 5px;
 }
 .home-page .card-text {
   color: aliceblue !important;

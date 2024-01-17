@@ -163,7 +163,7 @@ const Homepage = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      {/*  */}
+      {/* end craousel */}
       <div className="container-fluid row mt-2 home-page">
         <div className="col-md-2 filters">
           <h5 className="mt-2">Prices</h5>

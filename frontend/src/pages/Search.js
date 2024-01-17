@@ -7,7 +7,7 @@ const Search = () => {
   return (
     <Layout title={"Search - Results"}>
       <div className="container">
-        <div className="text-center">
+        <div className="text-center" style={{ paddingTop: "80px" }}>
           <h1>Search results</h1>
           <h5>
             {values?.results.length < 1

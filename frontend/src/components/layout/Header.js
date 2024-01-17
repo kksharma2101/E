@@ -15,6 +15,7 @@ const Header = () => {
   const [auth, setAuth] = useAuth();
   const category = useCategory();
   const [menuActive, setMenuActive] = useState(false);
+  const [searchActive, setSearchActive] = useState(false);
 
   // handle Logout
   const handleLogout = async () => {
@@ -27,8 +28,13 @@ const Header = () => {
   };
 
   // handleNabvar
-  const handleNabvar = () => {
+  const handleMenuList = () => {
     setMenuActive(!menuActive);
+  };
+
+  // handle search input
+  const handleSearchInput = () => {
+    setSearchActive(!searchActive);
   };
 
   return (
@@ -39,10 +45,15 @@ const Header = () => {
             <img src={require("./shoping-logo.png")} alt="logo" id="logo" />
           </NavLink>
         </div>
-        <div className="searchInput">
-          <SearchInputs />
+        <div className="searchBar" onClick={handleSearchInput}>
+          Search
         </div>
-        <div className="hamburger" onClick={handleNabvar}>
+        <div className={!searchActive ? "searchContainer" : ""}>
+          <div className="searchInput">
+            <SearchInputs />
+          </div>
+        </div>
+        <div className="humburger" onClick={handleMenuList}>
           <div className="burger"></div>
           <div className="burger"></div>
           <div className="burger"></div>
