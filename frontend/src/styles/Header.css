@@ -23,6 +23,10 @@
   text-transform: uppercase;
   margin-top: 20px;
 }
+.unorderdList > li > a,
+.cart {
+  text-decoration: none;
+}
 .cart {
   font-size: 15px;
   padding-right: 10px;
