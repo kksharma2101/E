@@ -20,7 +20,7 @@ router.post("/login", login);
 // Forgot password || post
 router.post("/forgot-password", forgotPasswordController);
 
-router.get("/test", userVerify, isAdmin, test);
+router.get("/test", test);
 
 // protected user route auth
 router.get("/user-auth", userVerify, (req, res) => {
