@@ -80,7 +80,7 @@ const CartPage = () => {
 
   return (
     <Layout>
-      <div className="cart-page p-2">
+      <div className="cart-page p-2" style={{ height: "90vw" }}>
         <div style={{ marginTop: "70px" }}>
           <div className="row">
             <h1 className="text-center mt-2 came">

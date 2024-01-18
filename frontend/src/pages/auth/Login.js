@@ -71,7 +71,11 @@ const Login = () => {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              style={{ paddingLeft: "100px" }}
+            >
               Submit
             </button>
             <div className="mt-3">
@@ -79,6 +83,7 @@ const Login = () => {
                 type="button"
                 className="btn btn-primary"
                 onClick={() => navigate("/forgot-password")}
+                style={{ paddingLeft: "70px" }}
               >
                 Forgot Password
               </button>

@@ -6,7 +6,7 @@ const UserMenu = () => {
   return (
     <>
       <div className="text-center dashboard-menu">
-        <div className="list-group" style={{ color: "#fff" }}>
+        <div className="list-group" style={{ color: "#fff", height: "90vw" }}>
           <h4>Dashboard</h4>
           <NavLink
             to="/dashboard/user/profile"

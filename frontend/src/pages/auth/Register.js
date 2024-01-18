@@ -63,7 +63,7 @@ const Register = () => {
                 onChange={(e) => setName(e.target.value)}
                 className="form-control"
                 id="exampleInputName"
-                placeholder="Name"
+                placeholder="Name - atleast 8 character"
                 required
                 maxLength={8}
               />
@@ -129,7 +129,11 @@ const Register = () => {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              style={{ paddingLeft: "100px" }}
+            >
               Submit
             </button>
           </form>
