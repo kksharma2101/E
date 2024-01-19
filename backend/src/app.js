@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: "https://e-commerce-f0u587bie-kamal-sharmas-projects.vercel.app",
+    // origin: "https://e-commerce-f0u587bie-kamal-sharmas-projects.vercel.app",
   })
 );
 
