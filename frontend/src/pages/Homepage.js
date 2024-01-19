@@ -33,7 +33,7 @@ const Homepage = () => {
     }
   };
   useEffect(() => {
-    if (page == 1) return;
+    if (page === 1) return;
     loadMore();
   }, [page]);
 

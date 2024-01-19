@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const UserMenu = () => {
   return (
-    <>
+    <Layout>
       <div className="text-center dashboard-menu">
         <div className="list-group" style={{ color: "#fff", height: "90vw" }}>
           <h4>Dashboard</h4>
@@ -22,7 +22,7 @@ const UserMenu = () => {
           </NavLink>
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 
