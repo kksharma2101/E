@@ -262,11 +262,6 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
-// test controllers
-const test = (req, res) => {
-  res.send("check user verify");
-};
-
 export {
   register,
   login,

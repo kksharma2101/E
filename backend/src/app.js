@@ -24,6 +24,9 @@ app.use("/api", authRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/product", productRouter);
 
+app.use("/test", function (req, res) {
+  res.send("server is live");
+});
 // call database
 connectDb();
 
