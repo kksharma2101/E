@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy": "https://ecommerce-backend-app-g9q5.onrender.com",
+  "proxy": "e-commerce-app-production-356d.up.railway.app",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
