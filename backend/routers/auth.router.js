@@ -2,7 +2,6 @@ import express from "express";
 import {
   login,
   register,
-  test,
   forgotPasswordController,
   userProfileUpdate,
   getOrderController,

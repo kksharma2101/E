@@ -265,7 +265,6 @@ const updateOrderStatus = async (req, res) => {
 export {
   register,
   login,
-  test,
   forgotPasswordController,
   userProfileUpdate,
   getOrderController,
