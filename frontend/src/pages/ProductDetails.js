@@ -18,7 +18,7 @@ const ProductDetails = () => {
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
-        `/api/product/single-product/${params.slug}`
+        `${process.env.REACT_APP_API_URL}/api/product/single-product/${params.slug}`
       );
       setProduct(data?.product);
       getRelatedProduct(data?.product?._id, data?.product?.category?._id);
@@ -31,7 +31,7 @@ const ProductDetails = () => {
   const getRelatedProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
-        `/api/product/related-product/${pid}/${cid}`
+        `${process.env.REACT_APP_API_URL}/api/product/related-product/${pid}/${cid}`
       );
       setRelatedProduct(data?.product);
     } catch (error) {
@@ -41,12 +41,17 @@ const ProductDetails = () => {
 
   return (
     <Layout>
-      <div className="d-flex justify-content-center flex-wrap">
+      <div
+        className="d-flex justify-content-center flex-wrap"
+        style={{ paddingTop: "70px" }}
+      >
         <div className="col-md-6 p-4">
           <img
-            src={`/api/product/product-photo/${product._id}`}
+            src={`${process.env.REACT_APP_API_URL}/api/product/product-photo/${product._id}`}
             class="card-img-top"
             alt={product.name}
+            height={"40%"}
+            width={"18rem"}
           />
         </div>
         <div className="col-md-6 p-4">
@@ -68,7 +73,7 @@ const ProductDetails = () => {
         {relatedProduct?.map((pro) => (
           <div className="card m-2" style={{ width: "18rem" }} key={pro._id}>
             <img
-              src={`/api/product/product-photo/${pro._id}`}
+              src={`${process.env.REACT_APP_API_URL}/api/product/product-photo/${pro._id}`}
               class="card-img-top"
               alt={pro.name}
               width={"180px"}

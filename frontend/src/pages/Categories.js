@@ -8,7 +8,10 @@ const Categories = () => {
 
   return (
     <Layout title={"All - Categories"}>
-      <div className="container-fluid p-3 dashboard" style={{ height: "60vw" }}>
+      <div
+        className="container-fluid p-3 dashboard"
+        style={{ height: "100vw" }}
+      >
         <div className="row container" style={{ marginTop: "70px" }}>
           {categories?.map((c) => (
             <div className="col-md-6 mb-3 mt-2" key={c._id}>

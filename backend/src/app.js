@@ -13,11 +13,7 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(
-  cors({
-    // origin: "https://e-commerce-f0u587bie-kamal-sharmas-projects.vercel.app",
-  })
-);
+app.use(cors());
 
 // router call
 app.use("/api", authRouter);

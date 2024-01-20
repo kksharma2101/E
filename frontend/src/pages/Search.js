@@ -22,7 +22,7 @@ const Search = () => {
                 key={pro._id}
               >
                 <img
-                  src={`/api/product/product-photo/${pro._id}`}
+                  src={`${process.env.REACT_APP_API_URL}/api/product/product-photo/${pro._id}`}
                   class="card-img-top"
                   alt={pro.name}
                 />

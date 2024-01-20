@@ -47,7 +47,9 @@ const CartPage = () => {
   // get payment token
   const getPaymentToken = async () => {
     try {
-      const { data } = await axios.get("/api/product/braintree/token");
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/product/braintree/token`
+      );
       setClientToken(data?.clientToken);
     } catch (error) {
       console.log(error);
@@ -64,10 +66,13 @@ const CartPage = () => {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
       // const { data } =
-      await axios.post("/api/product/braintree/payment", {
-        nonce,
-        cart,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/product/braintree/payment`,
+        {
+          nonce,
+          cart,
+        }
+      );
       setLoading(false);
       localStorage.removeItem("cart");
       setCart([]);
@@ -102,7 +107,7 @@ const CartPage = () => {
                 <div className="row card flex-row p-2 mt-2 mb-2" key={pro._id}>
                   <div className="col-md-5">
                     <img
-                      src={`/api/product/product-photo/${pro._id}`}
+                      src={`${process.env.REACT_APP_API_URL}/api/product/product-photo/${pro._id}`}
                       class="card-img-top"
                       alt={pro.name}
                       width={"100%"}

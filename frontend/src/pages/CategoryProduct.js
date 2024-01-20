@@ -11,12 +11,11 @@ const CategoryProduct = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState();
 
-  // console.log(products);
   //   get category by product
   const getCategoryByProduct = async () => {
     try {
       const { data } = await axios.get(
-        `/api/product/category-product/${params.slug}`
+        `${process.env.REACT_APP_API_URL}/api/product/category-product/${params.slug}`
       );
       if (data?.success) {
         setProducts(data?.product);
@@ -44,7 +43,7 @@ const CategoryProduct = () => {
                 key={pro._id}
               >
                 <img
-                  src={`/api/product/product-photo/${pro._id}`}
+                  src={`${process.env.REACT_APP_API_URL}/api/product/product-photo/${pro._id}`}
                   class="card-img-top"
                   alt={pro.name}
                 />
@@ -58,7 +57,11 @@ const CategoryProduct = () => {
                     <button
                       href="#"
                       class="btn btn-primary ms-2"
-                      onClick={() => navigate(`/product/${pro.slug}`)}
+                      onClick={() =>
+                        navigate(
+                          `${process.env.REACT_APP_API_URL}/product/${pro.slug}`
+                        )
+                      }
                     >
                       More Details
                     </button>

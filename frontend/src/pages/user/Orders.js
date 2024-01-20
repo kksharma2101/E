@@ -11,7 +11,9 @@ const Orders = () => {
   // get all orders
   const getAllOrders = async () => {
     try {
-      const { data } = await axios.get("/api/orders");
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/orders`
+      );
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -59,7 +61,7 @@ const Orders = () => {
                     >
                       <div className="col-md-4">
                         <img
-                          src={`/api/product/product-photo/${pro._id}`}
+                          src={`${process.env.REACT_APP_API_URL}/api/product/product-photo/${pro._id}`}
                           class="card-img-top"
                           alt={pro.name}
                           width={"30px"}
