@@ -46,11 +46,15 @@ const Header = () => {
         <div className="searchBar" onClick={handleSearchInput}>
           Search
         </div>
-        <div className={!searchActive ? "searchContainer" : ""}>
-          <div className="searchInput">
-            <SearchInputs />
+        {!menuActive ? (
+          <div className={!searchActive ? "searchContainer" : ""}>
+            <div className="searchInput">
+              <SearchInputs />
+            </div>
           </div>
-        </div>
+        ) : (
+          ""
+        )}
         <div className="humburger" onClick={handleMenuList}>
           <div className="burger"></div>
           <div className="burger"></div>

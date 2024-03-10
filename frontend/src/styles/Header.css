@@ -83,7 +83,7 @@
     padding: 2px 15px;
   }
 }
-@media screen and (max-width: 705px) {
+@media screen and (max-width: 765px) {
   div.itemContainer {
     display: none;
   }
