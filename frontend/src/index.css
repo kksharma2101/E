@@ -75,3 +75,11 @@
   text-decoration: none;
   color: #000 !important;
 }
+
+/* ===========================
+====User dashboard page css====== */
+.user-update-btn {
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 5px;
+}
