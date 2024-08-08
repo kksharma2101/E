@@ -69,7 +69,7 @@ const register = async (req, res, next) => {
       token,
     });
   } catch (e) {
-    return next(new AppError(e.message, 404));
+    return next(new AppError("Error in register user", e.message, 404));
   }
 };
 
