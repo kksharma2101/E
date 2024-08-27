@@ -2,7 +2,7 @@
 Welcome to the Clone E-Commerce Web App! This project is a fully functional e-commerce shopping application inspired by some e-commerce site, built using React.js, JavaScript, CSS.The app allows users to browse and purchase a variety of Products.
 # Demo
 https://e-commerce-app-git-kamal-kamal-sharmas-projects.vercel.app/
-Features
+# Features
 - Product Listings
 - Add/Remove Products from cart.
 - Authentication.
