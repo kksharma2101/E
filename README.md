@@ -15,3 +15,7 @@ https://e-commerce-app-git-kamal-kamal-sharmas-projects.vercel.app/
 - Search Product
 * User Dashboard and
 * Admin dashboard
+# Instalation
+- git clone https://github.com/kksharma2101/E-Commerce-App.git e-commerce-app
+- cd e-commerce-app
+- npm install
